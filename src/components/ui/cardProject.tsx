@@ -17,6 +17,7 @@ export default function CardProject({
   onClick,
 }: CardProps) {
   return (
+    
     <div className="relative max-w-xl border border-solid border-gray-200 rounded-2xl overflow-hidden transition-all duration-500">
       <div className="w-full">
         <img
