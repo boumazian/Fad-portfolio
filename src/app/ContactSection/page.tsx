@@ -1,5 +1,6 @@
-import ContactLeft from "./ui/contactLeft";
-import ContactReight from "./ui/contactReight";
+
+import ContactLeft from "@/components/ui/contactLeft";
+import ContactReight from "@/components/ui/contactReight";
 
 export default function ContactSection() {
   return (
@@ -19,7 +20,7 @@ export default function ContactSection() {
     <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:max-w-6xl shadow-lg rounded-xl overflow-hidden">
       <ContactLeft />
       <div className="p-8">
-        <ContactReight />
+        <ContactReight/>
       </div>
     </div>
   </div>

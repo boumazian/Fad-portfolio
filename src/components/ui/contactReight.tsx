@@ -12,13 +12,15 @@ export default function ContactReight() {
       <div>
         <label htmlFor="name" className="block text-sm/6 font-semibold text-gray-900">Your Name</label>
         <div className="mt-2.5">
-          <input id="name" type="text"placeholder="karmin locia"  name="name" autoComplete="name" className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" />
+          <input id="name" type="text"placeholder="karmin locia"  name="name" autoComplete="name" 
+          className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" />
         </div>
       </div>
       <div>
         <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">Your Email</label>
         <div className="mt-2.5">
-          <input id="email" type="text" placeholder="karminlocia@gmail.com" name="email" autoComplete="family-name" className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" />
+          <input id="email" type="text" placeholder="karminlocia@gmail.com" name="email" autoComplete="family-name" 
+          className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" />
         </div>
       </div>
       </div>
@@ -26,7 +28,7 @@ export default function ContactReight() {
       <div>
         <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">subject</label>
         <div className="mt-2.5">
-          <input id="subject" type="text" placeholder="kproject Inquiry" name="subject" autoComplete="subject" className="block w-full rounded-md bg-white px-3.5 py-2 text-base
+          <input id="subject" type="text" placeholder="project Inquiry" name="subject" autoComplete="subject" className="block w-full rounded-md bg-white px-3.5 py-2 text-base
            text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" />
         </div>
       </div>

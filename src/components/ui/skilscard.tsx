@@ -12,7 +12,7 @@ return (
       <h3 className="text-xl font-semibold">Frontend Development</h3>
     </div>
     <div className="flex flex-wrap gap-3">
-      {["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS", "Framer Motion"].map(skill => (
+      {["React", "Next.js",  "TypeScript", "Tailwind CSS", "Bootstrap"].map(skill => (
         <span key={skill} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
           {skill}
         </span>
@@ -31,7 +31,7 @@ return (
       <h3 className="text-xl font-semibold">Backend Development</h3>
     </div>
     <div className="flex flex-wrap gap-3">
-      {["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"].map(skill => (
+      {["Node.js", "Expresse", "Vercel", "Prisma",  "API"].map(skill => (
         <span key={skill} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
           {skill}
         </span>
@@ -50,7 +50,7 @@ return (
       <h3 className="text-xl font-semibold">Design</h3>
     </div>
     <div className="flex flex-wrap gap-3">
-      {["Figma", "Adobe XD", "UI/UX", "Design Systems", "Prototyping", "Responsive Design"].map(skill => (
+      {["Figma",  "UI/UX", "Design Systems", "Canva", "Prototyping", "Responsive Design"].map(skill => (
         <span key={skill} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
           {skill}
         </span>
@@ -69,7 +69,7 @@ return (
       <h3 className="text-xl font-semibold">Cloud</h3>
     </div>
     <div className="flex flex-wrap gap-3">
-      {["AWS", "EC2", "S3", "Lambda", "CloudFormation", "DynamoDB", "Cognito"].map(skill => (
+      {["Microsoft Azure", "Openstack", "Amazon Web Service", "CloudFormation", "Terraform"].map(skill => (
         <span key={skill} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
           {skill}
         </span>

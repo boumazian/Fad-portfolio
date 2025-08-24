@@ -1,12 +1,15 @@
 type FormationItemProps = {
   title: string;
   date: string;
-  description: string;
+  etablissement: string ;
+  description1: string;
+  description2?: string;
+  description3?: string;
   tag?: string;
   link?: string;
 };
 
-export default function FormationItem({ title, date, description, tag, link }: FormationItemProps) {
+export default function FormationItem({ title, date, etablissement, description1, description2, description3, tag, link }: FormationItemProps) {
   return (
     <li className="mb-10 ms-6">
       {/* Circle icon */}
@@ -27,11 +30,27 @@ export default function FormationItem({ title, date, description, tag, link }: F
         )}
       </h3>
 
+{/*Etablissement*/}
+      <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+        {etablissement}
+      
+      </h3>
+
+
+
       {/* Date */}
       <time className="block mb-2 text-sm text-gray-400 dark:text-gray-500">{date}</time>
 
+      
+
       {/* Description */}
-      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description}</p>
+      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description1}</p>
+      {/* Description */}
+      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description2}</p>
+
+{/* Description */}
+      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description3}</p>
+
 
       {/* Link Button */}
       {link && (

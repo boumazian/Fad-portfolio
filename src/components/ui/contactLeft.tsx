@@ -19,13 +19,14 @@ export default function ContactLeft (){
       <div className="mt-8">
         <div className="space-y-4 text-sm">
       <div className="flex items-center gap-2">
-        <Phone className="w-4 h-4" /> 470-601-1911
+        <Phone className="w-4 h-4" /> 212-719-133-915
       </div>
       <div className="flex items-center gap-2">
-        <Mail className="w-4 h-4" /> Pagedone1234@gmail.com
+        <Mail className="w-4 h-4" /> studentfadoua@gmail.com
       </div>
       <div className="flex items-center gap-2">
-        <MapPin className="w-4 h-4" /> 789 Oak Lane, Lakeside, TX 54321
+        <MapPin className="w-4 h-4" /> Meknes, Morocco
+
       </div>
     </div>
         <div className="mt-6">

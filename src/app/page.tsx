@@ -1,7 +1,7 @@
-import Contact from "@/components/contactSection";
 import Hero from "@/components/hero";
-import Project from "@/components/project";
-import Skills from "@/components/skills";
+import ContactSection from "./ContactSection/page";
+import Skills from "./skills/page";
+import Projects from "./projects/page";
 
 export default function Home() {
   return (
@@ -9,8 +9,9 @@ export default function Home() {
     
     <Hero></Hero>
     <Skills></Skills>
-    <Project></Project>
-    <Contact></Contact>
+    <Projects></Projects>
+
+    <ContactSection></ContactSection>
     </>
   );
 }
