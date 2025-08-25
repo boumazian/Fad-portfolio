@@ -12,8 +12,8 @@ export default function Hero (){
         </div>
       </div>
       <div className="">
-        <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">Hello, i'm Fadoua <br/>
-        boumazian</h1>
+        <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">Hello, I'm Fadoua <br/>
+        Boumazian</h1>
         <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">Technicien specialiser en infrastructure digitale option cloud computing.<br />
          And devolopement web </p>
         <div className="mt-10 flex items-center pb-32 gap-x-6">
