@@ -14,36 +14,29 @@ export default function HobbiesForm() {
         <div className="px-20 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <CardHobbies
             imageUrls={[
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://flowbite.com/docs/images/carousel/carousel-1.svg",
-              "https://flowbite.com/docs/images/carousel/carousel-2.svg",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
+              "/securite1.jpeg",
+              "/securite2.jpeg",
+              "/securite3.jpeg",
+              
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
           />
           <CardHobbies
             imageUrls={[
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://flowbite.com/docs/images/carousel/carousel-1.svg",
-              "https://flowbite.com/docs/images/carousel/carousel-2.svg",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
+              "/dance2.jpeg",
+              "/dance1.jpeg",
+              "/dance3.jpeg",
+              
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
           />
           <CardHobbies
             imageUrls={[
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://flowbite.com/docs/images/carousel/carousel-1.svg",
-              "https://flowbite.com/docs/images/carousel/carousel-2.svg",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
-              "https://pagedone.io/asset/uploads/1695365240.png",
+              "/tkd1.jpg",
+              "/tkd2.jpg",
+     
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
