@@ -76,6 +76,19 @@ export default function HobbiesForm() {
             description="Provides faster transaction, so money arrives in realtime"
           />
 
+          <CardHobbies
+            imageUrls={[
+              "/shild3.jpeg",
+              "/shild2.jpeg",
+              "/shild1.jpeg",
+              "/shild4.jpeg",
+
+
+            ]}
+            title="Fast Transaction"
+            description="Provides faster transaction, so money arrives in realtime"
+          />
+
         </div>
 
       </div>
