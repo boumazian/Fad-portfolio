@@ -17,7 +17,7 @@ export default function HobbiesForm() {
               "/securite1.jpeg",
               "/securite2.jpeg",
               "/securite3.jpeg",
-              
+
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
@@ -27,7 +27,7 @@ export default function HobbiesForm() {
               "/dance2.jpeg",
               "/dance1.jpeg",
               "/dance3.jpeg",
-              
+
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
@@ -36,11 +36,46 @@ export default function HobbiesForm() {
             imageUrls={[
               "/tkd1.jpg",
               "/tkd2.jpg",
-     
+
             ]}
             title="Fast Transaction"
             description="Provides faster transaction, so money arrives in realtime"
           />
+
+          <CardHobbies
+            imageUrls={[
+              "/acting1.jpeg",
+              "/acting2.jpeg",
+              "/acting3.jpeg",
+              "/acting4.jpeg",
+              "/acting5.jpeg",
+            ]}
+            title="Fast Transaction"
+            description="Provides faster transaction, so money arrives in realtime"
+          />
+
+          <CardHobbies
+            imageUrls={[
+              "/swiming1.jpg",
+              "/swiming2.jpg",
+
+            ]}
+            title="Fast Transaction"
+            description="Provides faster transaction, so money arrives in realtime"
+          />
+
+
+          <CardHobbies
+            imageUrls={[
+              "/a1.jpg",
+              "/a2.JPG",
+
+
+            ]}
+            title="Fast Transaction"
+            description="Provides faster transaction, so money arrives in realtime"
+          />
+
         </div>
 
       </div>
