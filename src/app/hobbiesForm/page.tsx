@@ -10,7 +10,7 @@ export default function HobbiesForm() {
       <div >
         <h1 className=" text-center text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-4xl">Hobbies & Interests</h1>
         <p className="text-center text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">Discover the passions that inspire me beyond work.
-          Activities that fuel my creativity, discipline, and personal growth.. </p>
+          Activities that fuel my creativity, discipline, and personal growth. </p>
         <div className="px-20 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <CardHobbies
             imageUrls={[
@@ -19,8 +19,8 @@ export default function HobbiesForm() {
               "/securite3.jpeg",
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="First Aid Rescuer"
+            description=" National Organization dor Relief, Rescue and Rapid Intervention."
           />
           <CardHobbies
             imageUrls={[
@@ -29,8 +29,8 @@ export default function HobbiesForm() {
               "/dance3.jpeg",
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Dancing"
+            description="Foreign dance, whether it's Zumba, African dance, or dancing to Moroccan and national songs."
           />
           <CardHobbies
             imageUrls={[
@@ -38,8 +38,8 @@ export default function HobbiesForm() {
               "/tkd2.jpg",
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Taekwondo "
+            description="Taekwondo champion with Ayas Sporting Taekwondo Association."
           />
 
           <CardHobbies
@@ -50,8 +50,8 @@ export default function HobbiesForm() {
               "/acting4.jpeg",
               "/acting5.jpeg",
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Acting"
+            description="Acting and portraying characters, whether in plays, expressive tableaux, silent scenes, or sketches."
           />
 
           <CardHobbies
@@ -60,8 +60,8 @@ export default function HobbiesForm() {
               "/swiming2.jpg",
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Swimming"
+            description="Swimming, whether in the pool or in the sea."
           />
 
 
@@ -72,8 +72,8 @@ export default function HobbiesForm() {
 
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Ambassador"
+            description="Ambassador at the Institute Spécialisé de Technologie Appliquée de Gestion Bab Tizimi Meknes."
           />
 
           <CardHobbies
@@ -85,8 +85,8 @@ export default function HobbiesForm() {
 
 
             ]}
-            title="Fast Transaction"
-            description="Provides faster transaction, so money arrives in realtime"
+            title="Coordinator"
+            description="Coordinator at summer camps and also accompanying trips with the Archipelago Association for Cultures in the city of Azrou."
           />
 
         </div>
