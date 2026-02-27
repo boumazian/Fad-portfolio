@@ -15,7 +15,8 @@ export default function ContactSection() {
       `}</style>
       <section className={`cs ${t}`}>
         <h2 className="sec-title">Contact Me</h2>
-        <p className="sec-sub">Have a project in mind or want to discuss opportunities? Let's connect!</p>
+        {/* استعملت &apos; في كلمة Let's */}
+        <p className="sec-sub">Have a project in mind or want to discuss opportunities? Let&apos;s connect!</p>
         <div className="cs-w">
           <ContactLeft/>
           <ContactReight/>

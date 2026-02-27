@@ -18,7 +18,8 @@ export default function ContactLeft() {
       <div className="cl">
         <div>
           <div className="cl-t">Get In Touch</div>
-          <div className="cl-s">Feel free to reach out — I'll get back to you as soon as possible.</div>
+          {/* هنا فين كان المشكل في كلمة I'll */}
+          <div className="cl-s">Feel free to reach out — I&apos;ll get back to you as soon as possible.</div>
           <div className="cl-info">
             <div className="cl-row"><span className="cl-ic"><Phone size={13}/></span>+212 719 133 915</div>
             <div className="cl-row"><span className="cl-ic"><Mail size={13}/></span>studentfadoua@gmail.com</div>
