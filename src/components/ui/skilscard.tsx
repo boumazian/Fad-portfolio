@@ -1,95 +1,44 @@
-export default function SkillsCard() {
-  // Définir toutes les catégories et leurs compétences dans un seul objet
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      color: "from-blue-500 to-indigo-500",
-      icon: (
-        <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-      ),
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Bootstrap"],
-    },
-    {
-      title: "Backend Development",
-      color: "bg-green-500",
-      icon: (
-        <path d="M4 6h16M4 12h16M4 18h16" />
-      ),
-      skills: ["Node.js", "Express", "Vercel", "Prisma", "API"],
-    },
-    {
-      title: "Design",
-      color: "bg-pink-500",
-      icon: (
-        <path d="M4 4h16v16H4z" />
-      ),
-      skills: ["Figma", "UI/UX", "Design Systems", "Canva", "Prototyping", "Responsive Design"],
-    },
-    {
-      title: "Cloud",
-      color: "bg-yellow-500",
-      icon: (
-        <path d="M3 15a4 4 0 104 4h11a4 4 0 100-8 5 5 0 00-9-3 6 6 0 00-6 6z" />
-      ),
-      skills: ["Microsoft Azure", "Openstack", "Amazon Web Service", "CloudFormation", "Terraform"],
-    },
-    {
-      title: "Security",
-      color: "bg-red-500",
-      icon: (
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      ),
-      skills: ["IAM", "Cognito", "Access Control", "VPC Security", "Encryption", "Firewall Rules"],
-    },
-    {
-      title: "Network",
-      color: "bg-blue-600",
-      icon: (
-        <path d="M2 12h20M12 2v20M4 4l16 16" />
-      ),
-      skills: ["TCP/IP", "DNS", "Load Balancers", "VPC", "Subnets", "Routing", "Network Monitoring"],
-    },
-  ];
+"use client";
+import { useTheme } from "@/context/ThemeContext";
 
+const CATS = [
+  { title:"Frontend Development", icon:"⚡", skills:["React","Next.js","TypeScript","Tailwind CSS","Bootstrap"] },
+  { title:"Backend Development",  icon:"🛠", skills:["Node.js","Express","Vercel","Prisma","API"] },
+  { title:"Design",               icon:"✦", skills:["Figma","UI/UX","Design Systems","Canva","Prototyping","Responsive Design"] },
+  { title:"Cloud",                icon:"☁️", skills:["Microsoft Azure","OpenStack","Amazon Web Service","CloudFormation","Terraform"] },
+  { title:"Security",             icon:"🔐", skills:["IAM","Cognito","Access Control","VPC Security","Encryption","Firewall Rules"] },
+  { title:"Network",              icon:"🌐", skills:["TCP/IP","DNS","Load Balancers","VPC","Subnets","Routing","Network Monitoring"] },
+];
+
+export default function SkillsCard() {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-20 lg:px-44 pb-24">
-      {skillCategories.map((category) => (
-        <div
-          key={category.title}
-          className="rounded-xl shadow-md p-6 bg-white hover:shadow-lg transition-shadow duration-300"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div
-              className={`p-2 rounded-lg text-white ${
-                category.color.includes("from-")
-                  ? `bg-gradient-to-tr ${category.color}`
-                  : category.color
-              }`}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                {category.icon}
-              </svg>
+    <>
+      <style>{`
+        .sg { display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.1rem;padding:0 1.5rem 4rem;max-width:1100px;margin:0 auto; }
+        .sc { border-radius:15px;padding:1.4rem;background:var(--card);border:1px solid var(--border);transition:transform .25s,box-shadow .25s,border-color .25s; }
+        .sc:hover { transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent); }
+        .sc-h { display:flex;align-items:center;gap:9px;margin-bottom:.95rem; }
+        .sc-i { width:34px;height:34px;border-radius:9px;font-size:17px;display:flex;align-items:center;justify-content:center;background:var(--soft);border:1px solid var(--border); }
+        .sc-t { font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--txt); }
+        .sc-ps { display:flex;flex-wrap:wrap;gap:7px; }
+        .sc-p { padding:4px 11px;border-radius:100px;font-size:.78rem;font-weight:500;background:var(--pill);color:var(--pilltxt);border:1px solid var(--border);transition:background .2s,border-color .2s; }
+        .sc:hover .sc-p { border-color:var(--accent);background:var(--soft); }
+      `}</style>
+      <div className={`sg ${t}`}>
+        {CATS.map(c => (
+          <div className="sc" key={c.title}>
+            <div className="sc-h">
+              <span className="sc-i">{c.icon}</span>
+              <span className="sc-t">{c.title}</span>
             </div>
-            <h3 className="text-xl font-semibold">{category.title}</h3>
+            <div className="sc-ps">
+              {c.skills.map(s => <span className="sc-p" key={s}>{s}</span>)}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            {category.skills.map((skill) => (
-              <span
-                key={skill}
-                className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-200"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }

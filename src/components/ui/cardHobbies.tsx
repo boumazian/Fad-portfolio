@@ -1,87 +1,94 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface CardProps {
-  imageUrls: string[]; // بدلناها array بدل string واحد
+  imageUrls: string[];
   title: string;
   description: string;
-  buttonText?: string;
-  onClick?: () => void;
+  emoji?: string;
 }
 
-export default function CardHobbies({
-  imageUrls,
-  title,
-  description,
-  buttonText = "Read More",
-  onClick,
-}: CardProps) {
-  const [current, setCurrent] = useState(0);
+export default function CardHobbies({ imageUrls, title, description, emoji = "✦" }: CardProps) {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
+  const [cur, setCur] = useState(0);
 
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? imageUrls.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrent((prev) => (prev === imageUrls.length - 1 ? 0 : prev + 1));
-  };
+  const prev = () => setCur(i => i === 0 ? imageUrls.length - 1 : i - 1);
+  const next = () => setCur(i => i === imageUrls.length - 1 ? 0 : i + 1);
 
   return (
-    <div className="relative max-w-xl border border-solid border-gray-200 rounded-2xl overflow-hidden transition-all duration-500">
-      {/* Carousel */}
-      <div className="relative h-56 md:h-72 overflow-hidden">
-        {imageUrls.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt={`Slide ${index + 1}`}
-            className={`absolute w-full h-full object-cover rounded-t-2xl transition-opacity duration-700 ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+    <>
+      <style>{`
+        .ch { border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s,border-color .28s; }
+        .ch:hover { transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent); }
 
-        {/* Prev button */}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/40 hover:bg-white/70 rounded-full p-2"
-        >
-          ◀
-        </button>
+        /* Carousel */
+        .ch-car { position:relative;height:210px;overflow:hidden;background:var(--soft); }
+        .ch-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s ease; }
+        .ch-img.on { opacity:1; } .ch-img.off { opacity:0; }
 
-        {/* Next button */}
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/40 hover:bg-white/70 rounded-full p-2"
-        >
-          ▶
-        </button>
+        /* Nav buttons */
+        .ch-nav { position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;backdrop-filter:blur(8px);transition:background .2s,transform .2s; }
+        .ch-nav:hover { transform:translateY(-50%) scale(1.1); }
+        .ch-prev { left:10px; } .ch-next { right:10px; }
+        .dk .ch-nav { background:rgba(10,10,20,.55);color:#fff; }
+        .lk .ch-nav { background:rgba(255,255,255,.7);color:#0e0a1d; }
 
-        {/* Indicators */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-2">
-          {imageUrls.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className={`w-3 h-3 rounded-full ${
-                index === current ? "bg-indigo-600" : "bg-gray-300"
-              }`}
-            />
-          ))}
+        /* Dots */
+        .ch-dots { position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px; }
+        .ch-dot { width:6px;height:6px;border-radius:50%;border:none;cursor:pointer;transition:all .25s; }
+        .ch-dot.on { width:18px;border-radius:3px;background:var(--accent); }
+        .ch-dot.off { background:rgba(255,255,255,.5); }
+
+        /* No image fallback */
+        .ch-ph { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--txt3); }
+
+        /* Body */
+        .ch-body { padding:1.1rem 1.2rem 1.3rem;flex:1; }
+        .ch-title { font-family:var(--font-syne,'Syne',sans-serif);font-size:.97rem;font-weight:700;color:var(--txt);margin-bottom:.4rem; }
+        .ch-desc { font-size:.83rem;color:var(--txt2);line-height:1.7; }
+
+        /* Counter badge */
+        .ch-count { position:absolute;top:10px;right:10px;padding:3px 9px;border-radius:100px;font-size:.7rem;font-weight:600;backdrop-filter:blur(8px); }
+        .dk .ch-count { background:rgba(10,10,20,.6);color:rgba(255,255,255,.8); }
+        .lk .ch-count { background:rgba(255,255,255,.75);color:#0e0a1d; }
+      `}</style>
+
+      <div className={`ch ${t}`}>
+        {/* Carousel */}
+        <div className="ch-car">
+          {imageUrls.length > 0 ? (
+            <>
+              {imageUrls.map((url, i) => (
+                <img key={i} src={url} alt={`${title} ${i + 1}`} className={`ch-img ${i === cur ? "on" : "off"}`} />
+              ))}
+              {/* Counter */}
+              <span className="ch-count">{cur + 1}/{imageUrls.length}</span>
+              {/* Nav */}
+              {imageUrls.length > 1 && (
+                <>
+                  <button className="ch-nav ch-prev" onClick={prev}>◀</button>
+                  <button className="ch-nav ch-next" onClick={next}>▶</button>
+                  <div className="ch-dots">
+                    {imageUrls.map((_, i) => (
+                      <button key={i} className={`ch-dot ${i === cur ? "on" : "off"}`} onClick={() => setCur(i)}/>
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <div className="ch-ph">{emoji}</div>
+          )}
+        </div>
+
+        {/* Body */}
+        <div className="ch-body">
+          <div className="ch-title">{title}</div>
+          <div className="ch-desc">{description}</div>
         </div>
       </div>
-
-      {/* Content */}
-      <div className="p-2">
-        <h4 className="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500">
-          {title}
-        </h4>
-        <p className="text-sm font-normal text-gray-500 leading-5 mb-5">
-          {description}
-        </p>
-      
-      </div>
-    </div>
+    </>
   );
 }

@@ -1,73 +1,38 @@
-// components/contact/ContactForm.tsx
+"use client";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function ContactReight() {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
   return (
-    <form className="space-y-4">
-      <h3 className="text-xl font-bold text-gray-800">Send Us Message</h3>
-     
-      <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div>
-          <label htmlFor="name" className="block text-sm/6 font-semibold text-gray-900">Your Name</label>
-          <div className="mt-2.5">
-            <input
-              id="name"
-              type="text"
-              placeholder="karmin locia"
-              name="name"
-              autoComplete="name"
-              className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-            />
+    <>
+      <style>{`
+        .cr{padding:2.5rem;}
+        .cr-t{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--txt);margin-bottom:1.4rem;}
+        .cr-form{display:flex;flex-direction:column;gap:1rem;}
+        .cr-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+        @media(max-width:580px){.cr-row{grid-template-columns:1fr;}}
+        .cr-f{display:flex;flex-direction:column;gap:5px;}
+        .cr-l{font-size:.78rem;font-weight:600;color:var(--txt2);letter-spacing:.04em;}
+        .cr-i,.cr-ta{padding:10px 13px;border-radius:9px;border:1px solid var(--inpborder);background:var(--inp);color:var(--txt);font-size:.88rem;font-family:inherit;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+        .cr-i::placeholder,.cr-ta::placeholder{color:var(--txt3);}
+        .cr-i:focus,.cr-ta:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--soft);}
+        .cr-ta{resize:vertical;min-height:115px;}
+        .cr-btn{padding:12px;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#0d9488);color:#fff;font-size:.92rem;font-weight:700;font-family:inherit;box-shadow:0 0 22px rgba(124,58,237,.28);transition:transform .2s,box-shadow .2s;margin-top:.2rem;}
+        .cr-btn:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(124,58,237,.48);}
+      `}</style>
+      <div className={`cr ${t}`}>
+        <div className="cr-t">Send a Message</div>
+        <form className="cr-form">
+          <div className="cr-row">
+            <div className="cr-f"><label className="cr-l">Your Name</label><input className="cr-i" type="text" placeholder="Karmin Locia"/></div>
+            <div className="cr-f"><label className="cr-l">Your Email</label><input className="cr-i" type="email" placeholder="karmin@gmail.com"/></div>
           </div>
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">Your Email</label>
-          <div className="mt-2.5">
-            <input
-              id="email"
-              type="text"
-              placeholder="karminlocia@gmail.com"
-              name="email"
-              autoComplete="family-name"
-              className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-            />
-          </div>
-        </div>
+          <div className="cr-f"><label className="cr-l">Subject</label><input className="cr-i" type="text" placeholder="Project Inquiry"/></div>
+          <div className="cr-f"><label className="cr-l">Message</label><textarea className="cr-ta" placeholder="Tell me about your project..."/></div>
+          <button type="submit" className="cr-btn">Let&apos;s Talk ✦</button>
+        </form>
       </div>
-      
-      <div>
-        <label htmlFor="subject" className="block text-sm/6 font-semibold text-gray-900">Subject</label>
-        <div className="mt-2.5">
-          <input
-            id="subject"
-            type="text"
-            placeholder="project Inquiry"
-            name="subject"
-            autoComplete="subject"
-            className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-          />
-        </div>
-      </div>
-      
-      <div className="sm:col-span-2">
-        <label htmlFor="message" className="block text-sm/6 font-semibold text-gray-900">Message</label>
-        <div className="mt-2.5">
-          <textarea
-            id="message"
-            placeholder="Tell me about your project ..."
-            name="message"
-            className="block w-full rounded-md bg-white px-3.5 py-4 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-          ></textarea>
-        </div>
-      </div>
-    
-      <div className="mt-10">
-        <button
-          type="submit"
-          className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Let&apos;s talk
-        </button>
-      </div>
-    </form>
+    </>
   );
 }

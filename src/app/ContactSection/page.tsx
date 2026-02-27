@@ -1,28 +1,26 @@
+"use client";
+import { useTheme } from "@/context/ThemeContext";
 import ContactLeft from "@/components/ui/contactLeft";
 import ContactReight from "@/components/ui/contactReight";
 
 export default function ContactSection() {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
   return (
-    <div className="bg-white py-10 px-4 sm:px-6 lg:px-8">
-      {/* Title & Subtitle */}
-      <div className="max-w-3xl mx-auto text-center mb-8">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-2">
-          Contact Me
-        </h1>
-        <p className="text-base sm:text-lg text-gray-500">
-          Have a project in mind or want to discuss opportunities? Let&apos;s connect!
-        </p>
-      </div>
-
-      {/* Form Container */}
-      <div className="flex items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full sm:max-w-6xl shadow-lg rounded-xl overflow-hidden">
-          <ContactLeft />
-          <div className="p-8">
-            <ContactReight/>
-          </div>
+    <>
+      <style>{`
+        .cs{padding:5rem 1.5rem 4rem;background:var(--bg);transition:background .4s;}
+        .cs-w{max-width:940px;margin:0 auto;border-radius:18px;overflow:hidden;border:1px solid var(--border);display:grid;grid-template-columns:1fr 1.15fr;background:var(--card);box-shadow:var(--shadow);}
+        @media(max-width:680px){.cs-w{grid-template-columns:1fr;}}
+      `}</style>
+      <section className={`cs ${t}`}>
+        <h2 className="sec-title">Contact Me</h2>
+        <p className="sec-sub">Have a project in mind or want to discuss opportunities? Let's connect!</p>
+        <div className="cs-w">
+          <ContactLeft/>
+          <ContactReight/>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

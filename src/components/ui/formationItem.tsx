@@ -1,73 +1,139 @@
+"use client";
+import { useTheme } from "@/context/ThemeContext";
+
 type FormationItemProps = {
   title: string;
   date: string;
-  etablissement: string ;
+  etablissement: string;
   description1: string;
   description2?: string;
   description3?: string;
   tag?: string;
   link?: string;
+  isLast?: boolean;
 };
 
-export default function FormationItem({ title, date, etablissement, description1, description2, description3, tag, link }: FormationItemProps) {
+const TAG_COLORS: Record<string, string> = {
+  Diplome:     "linear-gradient(135deg,#7c3aed,#0d9488)",
+  Certificat:  "linear-gradient(135deg,#0d9488,#0ea5e9)",
+  Attestation: "linear-gradient(135deg,#a855f7,#7c3aed)",
+};
+
+export default function FormationItem({
+  title, date, etablissement, description1, description2, description3, tag, link, isLast
+}: FormationItemProps) {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
+
   return (
-    <li className="mb-10 ms-6">
-      {/* Circle icon */}
-      <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-        <svg className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor" viewBox="0 0 20 20">
-          <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-        </svg>
-      </span>
+    <>
+      <style>{`
+        .fi-wrap {
+          display: flex; gap: 1.5rem;
+          padding-bottom: ${isLast ? "0" : "2.5rem"};
+          position: relative;
+        }
 
-      {/* Title and Tag */}
-      <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-        {title}
-        {tag && (
-          <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 ms-3">
-            {tag}
-          </span>
-        )}
-      </h3>
+        /* Timeline line */
+        .fi-line {
+          display: flex; flex-direction: column; align-items: center;
+          flex-shrink: 0;
+        }
+        .fi-dot {
+          width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+          background: linear-gradient(135deg,#7c3aed,#0d9488);
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 16px rgba(124,58,237,0.4);
+          z-index: 1;
+        }
+        .fi-dot svg { color: #fff; }
+        .fi-connector {
+          flex: 1; width: 2px; margin-top: 6px;
+          background: linear-gradient(to bottom, rgba(124,58,237,0.4), rgba(13,148,136,0.1));
+        }
 
-{/*Etablissement*/}
-      <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-        {etablissement}
-      
-      </h3>
+        /* Card */
+        .fi-card {
+          flex: 1; border-radius: 14px; padding: 1.3rem 1.5rem;
+          background: var(--card); border: 1px solid var(--border);
+          transition: transform .25s, box-shadow .25s, border-color .25s;
+          margin-bottom: .5rem;
+        }
+        .fi-card:hover { transform: translateX(4px); box-shadow: var(--shadow); border-color: var(--accent); }
 
+        .fi-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; flex-wrap: wrap; margin-bottom: .4rem; }
+        .fi-title { font-family: var(--font-syne, 'Syne', sans-serif); font-size: 1rem; font-weight: 700; color: var(--txt); line-height: 1.4; }
+        .fi-tag {
+          padding: 3px 11px; border-radius: 100px; font-size: .72rem; font-weight: 700;
+          color: #fff; white-space: nowrap; flex-shrink: 0;
+          letter-spacing: .04em;
+        }
+        .fi-etab { font-size: .82rem; color: var(--accent); font-weight: 500; margin-bottom: .3rem; }
+        .fi-date { font-size: .76rem; color: var(--txt3); margin-bottom: .7rem; display: flex; align-items: center; gap: 5px; }
+        .fi-desc { font-size: .875rem; color: var(--txt2); line-height: 1.7; margin-bottom: .3rem; }
+        .fi-link {
+          display: inline-flex; align-items: center; gap: 6px; margin-top: .8rem;
+          padding: 7px 16px; border-radius: 9px;
+          border: 1px solid var(--border); background: var(--soft);
+          color: var(--txt); font-size: .8rem; font-weight: 600;
+          text-decoration: none; transition: all .2s;
+        }
+        .fi-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
+        @media(max-width:600px) {
+          .fi-wrap { gap: 1rem; }
+          .fi-dot { width: 32px; height: 32px; }
+        }
+      `}</style>
 
-      {/* Date */}
-      <time className="block mb-2 text-sm text-gray-400 dark:text-gray-500">{date}</time>
+      <div className={`fi-wrap ${t}`}>
+        {/* Left: dot + line */}
+        <div className="fi-line">
+          <div className="fi-dot">
+            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          {!isLast && <div className="fi-connector"/>}
+        </div>
 
-      
-
-      {/* Description */}
-      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description1}</p>
-      {/* Description */}
-      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description2}</p>
-
-{/* Description */}
-      <p className="mb-4 text-base text-gray-500 dark:text-gray-400">{description3}</p>
-
-
-      {/* Link Button */}
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-        >
-          <svg className="w-3.5 h-3.5 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor" viewBox="0 0 20 20">
-            <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
-            <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-          </svg>
-          Download Certificate
-        </a>
-      )}
-    </li>
+        {/* Right: card */}
+        <div className="fi-card">
+          <div className="fi-top">
+            <div className="fi-title">{title}</div>
+            {tag && (
+              <span
+                className="fi-tag"
+                style={{ background: TAG_COLORS[tag] || TAG_COLORS.Attestation }}
+              >
+                {tag}
+              </span>
+            )}
+          </div>
+          <div className="fi-etab">{etablissement}</div>
+          <div className="fi-date">
+            <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeLinecap="round"/>
+              <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round"/>
+              <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round"/>
+              <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round"/>
+            </svg>
+            {date}
+          </div>
+          <div className="fi-desc">{description1}</div>
+          {description2 && <div className="fi-desc">{description2}</div>}
+          {description3 && <div className="fi-desc">{description3}</div>}
+          {link && link !== "#" && (
+            <a href={link} target="_blank" rel="noopener noreferrer" className="fi-link">
+              <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Download Certificate
+            </a>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

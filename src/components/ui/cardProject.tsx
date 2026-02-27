@@ -1,67 +1,47 @@
-import React from "react";
+"use client";
+import { useTheme } from "@/context/ThemeContext";
 
 interface CardProps {
-  imageUrl?: string; // optional for text-only cards
+  imageUrl?: string;
   title: string;
   description?: string;
+  tags?: string[];
+  link?: string;
   buttonText?: string;
   onClick?: () => void;
-  variant?: "default" | "outlined" | "shadow"; // visual style
-  className?: string; // for external customization
-  hoverEffect?: boolean; // toggle hover animation
 }
 
-export default function CardProject({
-  imageUrl,
-  title,
-  description,
-  buttonText,
-  onClick,
-  variant = "default",
-  className = "",
-  hoverEffect = true,
-}: CardProps) {
-  // classes dynamiques selon le variant
-  const baseClasses =
-    "relative max-w-xl rounded-2xl overflow-hidden transition-all duration-500";
-  const variantClasses =
-    variant === "outlined"
-      ? "border border-gray-300 bg-white"
-      : variant === "shadow"
-      ? "shadow-md bg-white"
-      : "border border-transparent bg-white";
-  const hoverClasses = hoverEffect ? "hover:shadow-xl hover:-translate-y-1" : "";
-
+export default function CardProject({ imageUrl, title, description, tags=[], link, buttonText, onClick }: CardProps) {
+  const { dark } = useTheme();
+  const t = dark ? "dk" : "lk";
   return (
-    <div className={`${baseClasses} ${variantClasses} ${hoverClasses} ${className}`}>
-      {imageUrl && (
-        <div className="w-full">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-48 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-105"
-          />
+    <>
+      <style>{`
+        .cp { border-radius:15px;overflow:hidden;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s,border-color .28s; }
+        .cp:hover { transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent); }
+        .cp-img { width:100%;height:175px;object-fit:cover;display:block;transition:transform .4s; }
+        .cp:hover .cp-img { transform:scale(1.04); }
+        .cp-ph { width:100%;height:175px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:var(--txt3); }
+        .cp-body { padding:1.2rem;flex:1;display:flex;flex-direction:column;gap:.55rem; }
+        .cp-title { font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:var(--txt); }
+        .cp-desc { font-size:.84rem;color:var(--txt2);line-height:1.7;flex:1; }
+        .cp-tags { display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:.4rem; }
+        .cp-tag { font-size:.72rem;font-weight:500;padding:3px 10px;border-radius:100px;background:var(--pill);color:var(--pilltxt);border:1px solid var(--border); }
+        .cp-btn { margin-top:.7rem;padding:9px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#0d9488);color:#fff;font-size:.84rem;font-weight:600;font-family:inherit;transition:opacity .2s; }
+        .cp-btn:hover { opacity:.88; }
+        .cp-link { display:inline-flex;align-items:center;gap:5px;margin-top:.6rem;font-size:.82rem;font-weight:600;color:var(--accent);text-decoration:none; }
+        .cp-link:hover { text-decoration:underline; }
+      `}</style>
+      <div className={`cp ${t}`}>
+        {imageUrl ? <img src={imageUrl} alt={title} className="cp-img"/> : <div className="cp-ph">🗂</div>}
+        <div className="cp-body">
+          <div className="cp-title">{title}</div>
+          {description && <div className="cp-desc">{description}</div>}
+          {tags.length > 0 && <div className="cp-tags">{tags.map(tg=><span className="cp-tag" key={tg}>{tg}</span>)}</div>}
+          {buttonText && <button className="cp-btn" onClick={onClick}>{buttonText}</button>}
+          {link && <a href={link} className="cp-link" target="_blank" rel="noopener noreferrer">View project →</a>}
         </div>
-      )}
-
-      <div className="p-5">
-        <h4 className="text-lg font-semibold text-gray-900 mb-2 capitalize">
-          {title}
-        </h4>
-
-        {description && (
-          <p className="text-sm text-gray-600 leading-6 mb-4">{description}</p>
-        )}
-
-        {buttonText && (
-          <button
-            onClick={onClick}
-            className="bg-indigo-600 hover:bg-indigo-700 rounded-md py-2 px-5 text-sm text-white font-semibold transition-all duration-300"
-          >
-            {buttonText}
-          </button>
-        )}
       </div>
-    </div>
+    </>
   );
 }
