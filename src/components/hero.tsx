@@ -1,18 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image"; // استعملنا Image ديال Next حيت أحسن
 import { useTheme } from "@/context/ThemeContext";
 
 const ROLES = ["Cloud Computing Engineer", "Full-Stack Developer", "Infrastructure Specialist", "UI/UX Enthusiast"];
-
-interface HeroProps {
-  welcomeMessage?: string;
-  welcomeLink?: { href: string; label: string };
-  title?: string;
-  subtitle?: string;
-  primaryButton?: { href: string; label: string };
-  secondaryButton?: { href: string; label: string };
-  photoSrc?: string;
-}
 
 export default function Hero({
   welcomeMessage = "Available for opportunities",
@@ -22,16 +13,16 @@ export default function Hero({
   primaryButton = { href: "/Cv.pdf", label: "Download Resume" },
   secondaryButton = { href: "/ContactSection", label: "Get in touch" },
   photoSrc = "/111.png",
-}: HeroProps) {
+}) {
   const { dark } = useTheme();
   const t = dark ? "dk" : "lk";
   const [ri, setRi] = useState(0);
   const [disp, setDisp] = useState("");
   const [del, setDel] = useState(false);
   const [vis, setVis] = useState(false);
-  const tmr = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tmr = useRef(null);
 
-  useEffect(() => { const id = setTimeout(() => setVis(true), 80); return () => clearTimeout(id); }, []);
+  useEffect(() => { setVis(true); }, []);
 
   useEffect(() => {
     const role = ROLES[ri];
@@ -81,18 +72,21 @@ export default function Hero({
         .sn{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--txt);letter-spacing:-.02em;}
         .sl{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);}
         .sdiv{width:1px;height:30px;background:var(--border);}
+        
+        /* Photo & Border Rotation (From Code 1) */
         .h-pw{position:relative;width:310px;height:380px;}
         .h-ring{position:absolute;inset:-10px;border-radius:25px;padding:2px;background:conic-gradient(from 0deg,#7c3aed,#0d9488,#a855f7,#7c3aed);animation:rspin 7s linear infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:1;pointer-events:none;}
         @keyframes rspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
         .h-frame{position:relative;width:100%;height:100%;border-radius:21px;overflow:hidden;z-index:2;border:1px solid var(--border);background:var(--card);}
-        .h-frame img{width:100%;height:100%;object-fit:cover;object-position:top;}
-        .h-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--txt3);font-size:.82rem;}
-        .h-chip{position:absolute;z-index:10;backdrop-filter:blur(18px);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);animation:cfl 5s ease-in-out infinite;}
-        .hc1{bottom:-13px;left:-16px;} .hc2{top:-13px;right:-16px;animation-delay:-2.5s;}
+        
+        /* The Floating Chips (From Code 2 Style) */
+        .h-chip{position:absolute;z-index:10;backdrop-filter:blur(18px);border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);animation:cfl 5s ease-in-out infinite;}
+        .hc1{bottom:-20px;left:-30px;} 
+        .hc2{top:-20px;right:-30px;animation-delay:-2.5s;}
         @keyframes cfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        .ci{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#0d9488);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-        .ct{font-size:11px;font-weight:600;color:var(--txt);white-space:nowrap;}
-        .cs{font-size:9.5px;color:var(--txt3);}
+        .ci-icon{width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#0d9488);display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;flex-shrink:0;}
+        .ct-title{font-size:12px;font-weight:bold;color:var(--txt);margin:0;}
+        .cs-desc{font-size:10px;color:var(--txt3);margin:0;}
       `}</style>
 
       <section className={`hero ${t}`}>
@@ -100,7 +94,7 @@ export default function Hero({
         <div className="orb o1" /><div className="orb o2" />
 
         <div className="h-in">
-          {/* LEFT */}
+          {/* LEFT CONTENT */}
           <div>
             <div className={`h-bd fu ${vis ? "in" : ""}`} style={{ display: "flex" }}>
               <span className="h-badge">
@@ -140,34 +134,40 @@ export default function Hero({
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT PHOTO SECTION */}
           <div className="h-pc" style={{ display: "flex", justifyContent: "flex-end" }}>
             <div className="h-pw">
+              {/* Rotating Ring from Code 1 */}
               <div className="h-ring" />
+              
               <div className="h-frame">
-                <img src={photoSrc} alt={title}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                    const ph = (e.target as HTMLImageElement).nextElementSibling as HTMLElement;
-                    if (ph) ph.style.display = "flex";
-                  }}
+                <Image 
+                  src={photoSrc} 
+                  alt={title}
+                  fill
+                  className="object-cover object-top hover:scale-110 transition-transform duration-700"
+                  priority
                 />
-                <div className="h-ph" style={{ display: "none" }}>
-                  <svg width="52" height="52" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" />
-                    <circle cx="12" cy="7" r="4" strokeLinecap="round" />
-                  </svg>
-                  <span>Add photoSrc prop</span>
+              </div>
+
+              {/* Floating Badge 1 (Cloud Engineer) */}
+              <div className="h-chip hc1">
+                <div className="ci-icon">☁️</div>
+                <div>
+                  <p className="ct-title">Cloud Engineer</p>
+                  <p className="cs-desc">Azure · AWS · OpenStack</p>
                 </div>
               </div>
-              <div className="h-chip hc1">
-                <div className="ci">☁️</div>
-                <div><div className="ct">Cloud Engineer</div><div className="cs">Azure · AWS · OpenStack</div></div>
-              </div>
+
+              {/* Floating Badge 2 (Open to work) */}
               <div className="h-chip hc2">
-                <div className="ci">✦</div>
-                <div><div className="ct">Open to work</div><div className="cs" style={{ color: "#4ade80" }}>● Available now</div></div>
+                <div className="ci-icon">✦</div>
+                <div>
+                  <p className="ct-title">Open to work</p>
+                  <p className="cs-desc" style={{ color: "#4ade80", fontWeight: 'bold' }}>● Available now</p>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
