@@ -20,8 +20,7 @@ export default function Hero({
   const [disp, setDisp] = useState("");
   const [del, setDel] = useState(false);
   const [vis, setVis] = useState(false);
-  const tmr = useRef(null);
-
+const tmr = useRef<ReturnType<typeof window.setTimeout> | null>(null);
   useEffect(() => { setVis(true); }, []);
 
   useEffect(() => {
