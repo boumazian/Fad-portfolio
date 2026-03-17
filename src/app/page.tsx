@@ -1,5 +1,6 @@
 import Hero from "@/components/hero";
-import Skills from "./skills/page";
+// import Skills from "./skills/page";
+import Skills from "@/components/ui/skilscard";
 import Projects from "./projects/page";
 import ContactSection from "./ContactSection/page";
 
@@ -7,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Skills />
+       <Skills/>
       <Projects />
       <ContactSection />
     </>
