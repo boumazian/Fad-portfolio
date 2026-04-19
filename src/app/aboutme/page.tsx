@@ -177,14 +177,13 @@ export default function AboutMe() {
               <h2 className="b-title" style={{fontSize: '1.8rem'}}>Meknès, Morocco</h2>
               <p className="b-text">Available for remote work worldwide.</p>
             </div>
-            <div style={{background: '#6366f115', p: '12px', borderRadius: '15px', padding: '10px'}}>
-              <MapPin color="#6366f1" size={28} />
-            </div>
+            <div style={{ background: '#6366f115', borderRadius: '15px', padding: '10px' }}>
+  <MapPin color="#6366f1" size={28} />
+</div>
           </div>
         </div>
 
         {/* CONTACT */}
-    {/* غ نزيدو "/" قبل "#contact" باش يرجع للصفحة الرئيسية عاد يقلب على السكسيون */}
 <a href="/#contact" className="b-card c-contact" style={{ textDecoration: 'none' }}>
   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
     <div style={{ background: 'rgba(255,255,255,0.2)', padding: '10px', borderRadius: '12px' }}>
