@@ -15,7 +15,7 @@ export default function Hero({
   welcomeLink = { href: "#contact", label: "Contact me →" },
   title = "Fadoua Boumazian",
   subtitle = "I am a Full-Stack Developer with a specialized background in Cloud Computing & Digital Infrastructure. My expertise lies in building modern web applications while leveraging AWS to ensure scalable and robust deployments. Currently, I am honing my eye for detail as a Manual QA Tester.",
-  primaryButton = { href: "/Cv.pdf", label: "Download Resume" },
+  primaryButton = { href: "/bo-cv.pdf", label: "Download Resume" },
   secondaryButton = { href: "#contact", label: "Get in touch" },
   photoSrc = "/111.png",
 }) {
