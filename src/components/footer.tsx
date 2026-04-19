@@ -60,8 +60,8 @@ export default function Footer() {
           <div className="ft-top">
             <div>
               <div className="ft-name">
-                <span className="ft-mark">F</span>
-                Fadoua<span className="grad">.</span>
+                <span className="ft-mark">fb</span>
+                Fad-Bo<span className="grad"></span>
               </div>
               <p className="ft-desc">
                 Full-Stack Developer specializing in Cloud Infrastructure. Building scalable solutions with AWS and modern web tech.
