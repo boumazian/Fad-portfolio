@@ -1,15 +1,20 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image"; // استعملنا Image ديال Next حيت أحسن
+import Image from "next/image"
 import { useTheme } from "@/context/ThemeContext";
 
-const ROLES = ["Cloud Computing Engineer", "Full-Stack Developer", "Infrastructure Specialist", "UI/UX Enthusiast"];
+const ROLES = [
+  "Full-Stack Developer", 
+  "Cloud Infrastructure Specialist", 
+  "QA Manual Tester", 
+  "UI/UX Enthusiast"
+];
 
 export default function Hero({
   welcomeMessage = "Available for opportunities",
   welcomeLink = { href: "/aboutme", label: "About me →" },
   title = "Fadoua Boumazian",
-  subtitle = "Technicienne spécialisée en infrastructure digitale & cloud computing, passionnée par le développement web moderne.",
+  subtitle = "I am a Full-Stack Developer with a specialized background in Cloud Computing & Digital Infrastructure. My expertise lies in building modern web applications while leveraging AWS to ensure scalable and robust deployments. Currently, I am honing my eye for detail as a Manual QA Tester, a role that complements my technical skills by ensuring every product I touch meets the highest standards of quality and performance.",
   primaryButton = { href: "/Cv.pdf", label: "Download Resume" },
   secondaryButton = { href: "/ContactSection", label: "Get in touch" },
   photoSrc = "/111.png",
@@ -124,17 +129,17 @@ const tmr = useRef<ReturnType<typeof window.setTimeout> | null>(null);
               </a>
             </div>
 
-            <div className={`h-st fu d5 ${vis ? "in" : ""}`}>
+            {/* <div className={`h-st fu d5 ${vis ? "in" : ""}`}>
               <div><div className="sn">3+</div><div className="sl">Years</div></div>
               <div className="sdiv" />
               <div><div className="sn">10+</div><div className="sl">Projects</div></div>
               <div className="sdiv" />
               <div><div className="sn">6+</div><div className="sl">Technologies</div></div>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT PHOTO SECTION */}
-          <div className="h-pc" style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div className="h-pc pl-38" >
             <div className="h-pw">
               {/* Rotating Ring from Code 1 */}
               <div className="h-ring" />
