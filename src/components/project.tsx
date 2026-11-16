@@ -3,7 +3,7 @@ import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/feat
 import { LayoutDashboard, MessageSquare, Globe, Cloud, ShoppingBag, Store } from "lucide-react";
 
 // Production case studies → featured full-width cards (alternating layout).
-// Set `github` / `link` when a repo or live URL is public; `privateNote` otherwise.
+// Only set `github` for PUBLIC repos; private ones get a lock badge instead of a 404 link.
 const FEATURED: FeaturedProjectProps[] = [{
   name: "KeepSize",
   badge: "Featured · Shopify App",
@@ -11,7 +11,8 @@ const FEATURED: FeaturedProjectProps[] = [{
   role: "Lead Engineer",
   company: "ReaLift",
   icon: <ShoppingBag size={30} />,
-  privateNote: "Proprietary code built at ReaLift, so the repository is private. Happy to walk through the architecture in an interview.",
+  privateLabel: "Private Repository (Client Work)",
+  privateNote: "Client work for ReaLift, so the code stays private. Happy to walk through the architecture in an interview.",
   problem: "Apparel and footwear shoppers often order two sizes of the same item and plan to send one back. Merchants lose money on that return before the order even ships.",
   solution: "KeepSize spots two sizes of one product in the cart and offers a gift card to keep just one, so the return never happens.",
   features: [
@@ -34,9 +35,10 @@ const FEATURED: FeaturedProjectProps[] = [{
   tagline: "A full-stack online store and back-office for an artisanal Moroccan brand of healthy snacks, from the storefront to the stock room.",
   role: "Solo Full-Stack Developer",
   icon: <Store size={30} />,
-  privateNote: "The code isn't public. Happy to demo the storefront and the admin dashboard in an interview.",
-  contactLabel: "Ask me for a demo",
-  github: "", // add the repo URL here if it becomes public
+  link: "https://gourmandise-saine.netlify.app",
+  linkLabel: "Visit live store",
+  privateNote: "The code is private. Happy to demo the admin dashboard in an interview.",
+  contactLabel: "Ask for a demo",
   problem: "A small healthy-snack business was taking orders by hand, with no view of stock, ingredient costs, or profit.",
   solution: "A custom store plus an admin dashboard where orders, inventory, bundles and finances update live in one place, backed by a secure PostgreSQL database.",
   features: [
@@ -130,7 +132,7 @@ export default function Projects() {
         <p className="sec-sub">Production work and personal projects: open the code on GitHub or try the live demo.</p>
 
         {FEATURED.map((f, i) => (
-          <FeaturedProject key={f.name} {...f} privateNote={f.github || f.link ? undefined : f.privateNote} reverse={i % 2 === 1} />
+          <FeaturedProject key={f.name} {...f} reverse={i % 2 === 1} />
         ))}
 
         <div className="p-grid">

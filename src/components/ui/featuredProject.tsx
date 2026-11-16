@@ -13,18 +13,22 @@ export interface FeaturedProjectProps {
   contribution: string;
   badge?: string;
   icon?: ReactNode;
-  privateNote?: string;  // shown when the code isn't public
-  github?: string;       // public repo → "GitHub" button
-  link?: string;         // public URL (live site, App Store listing) → "Visit" button
-  contactLabel?: string; // CTA text when there is no public link
+  github?: string;       // public repo → "GitHub" button. Never link a private repo (visitors get a 404)
+  privateLabel?: string; // badge shown when there is no public repo
+  privateNote?: string;  // short explanation shown when there is no public repo
+  link?: string;         // public URL (live site, App Store listing) → primary button
+  linkLabel?: string;
+  contactLabel?: string; // contact CTA (primary without a link, secondary with one)
   reverse?: boolean;     // identity panel on the right (alternate featured cards)
 }
 
 export default function FeaturedProject({
   name, tagline, company, role, problem, solution, features, stack, contribution, badge, icon,
-  privateNote, github, link, contactLabel = "Ask me about the architecture", reverse,
+  github, privateLabel = "Private Repository", privateNote, link, linkLabel = "Visit live site",
+  contactLabel = "Ask me about the architecture", reverse,
 }: FeaturedProjectProps) {
   const id = `fp-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  const isPrivate = !github;
   return (
     <>
       <style>{`
@@ -75,8 +79,8 @@ export default function FeaturedProject({
           transition: transform .25s, box-shadow .25s;
         }
         .fp-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5); }
-        .fp-ctas { display: flex; gap: .6rem; }
-        .fp-ctas .fp-cta { flex: 1; }
+        .fp-ctas { display: flex; flex-wrap: wrap; gap: .6rem; }
+        .fp-ctas .fp-cta { flex: 1 1 150px; white-space: nowrap; }
         .fp-cta.ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 
         /* Right: details */
@@ -116,7 +120,7 @@ export default function FeaturedProject({
         <div className="fp-side">
           <div className="fp-badges">
             {badge && <span className="fp-badge"><Star size={13} aria-hidden="true" /> {badge}</span>}
-            {privateNote && <span className="fp-badge"><Lock size={13} aria-hidden="true" /> Private</span>}
+            {isPrivate && <span className="fp-badge"><Lock size={13} aria-hidden="true" /> {privateLabel}</span>}
           </div>
           {icon && <div className="fp-icon" aria-hidden="true">{icon}</div>}
           <h3 id={id} className="fp-name">{name}</h3>
@@ -124,13 +128,19 @@ export default function FeaturedProject({
           <div className="fp-role">{role}{company && <span> · {company}</span>}</div>
 
           <div className="fp-foot">
-            {privateNote && (
+            {isPrivate && privateNote && (
               <div className="fp-private"><Lock size={15} aria-hidden="true" /><span>{privateNote}</span></div>
             )}
             {link || github ? (
               <div className="fp-ctas">
-                {link && <a className="fp-cta" href={link} target="_blank" rel="noopener noreferrer"><ExternalLink size={16} aria-hidden="true" /> Visit</a>}
-                {github && <a className={`fp-cta ${link ? "ghost" : ""}`} href={github} target="_blank" rel="noopener noreferrer" aria-label={`${name}: source code on GitHub`}><Github size={16} aria-hidden="true" /> GitHub</a>}
+                {link && (
+                  <a className="fp-cta" href={link} target="_blank" rel="noopener noreferrer" aria-label={`${name}: ${linkLabel} (opens in a new tab)`}>
+                    <ExternalLink size={16} aria-hidden="true" /> {linkLabel}
+                  </a>
+                )}
+                {github
+                  ? <a className={`fp-cta ${link ? "ghost" : ""}`} href={github} target="_blank" rel="noopener noreferrer" aria-label={`${name}: source code on GitHub`}><Github size={16} aria-hidden="true" /> GitHub</a>
+                  : <a className="fp-cta ghost" href="/#contact">{contactLabel} <ArrowRight size={16} aria-hidden="true" /></a>}
               </div>
             ) : (
               <a className="fp-cta" href="/#contact">{contactLabel} <ArrowRight size={16} aria-hidden="true" /></a>
