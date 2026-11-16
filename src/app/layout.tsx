@@ -139,11 +139,15 @@ const THEME_CSS = `
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
-      <head>
+      {/*
+        No custom <head> children: Netlify's edge injects an HTML comment into <head>,
+        which made React's hydration of our own <head> tags fail (React error #418).
+        The theme script/tokens sit at the very top of <body> instead: they still run
+        before any content is painted, so there is no theme flash.
+      */}
+      <body className={`${jakarta.variable} ${dmSans.variable} antialiased`}>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: THEME_CSS }} />
-      </head>
-      <body className={`${jakarta.variable} ${dmSans.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
