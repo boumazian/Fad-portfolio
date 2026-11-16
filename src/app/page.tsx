@@ -1,4 +1,5 @@
 import Hero from "@/components/hero";
+import Experience from "@/components/experience";
 import Skills from "@/components/ui/skilscard";
 import Projects from "@/components/project";
 import ContactSection from "@/components/contactSection";
@@ -9,7 +10,11 @@ export default function Home() {
       <section id="home">
         <Hero />
       </section>
-      
+
+      <section id="experience">
+        <Experience />
+      </section>
+
       <section id="skills">
         <Skills/>
       </section>

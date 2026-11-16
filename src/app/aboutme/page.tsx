@@ -145,13 +145,13 @@ export default function AboutMe() {
           </div>
         </div>
 
-        {/* PROJECTS */}
+        {/* EXPERIENCE — Terrab Consulting Innovation, Aug 2024 → present */}
         <div className="b-card">
           <div>
-            <div className="b-subtitle">Impact</div>
-            <div className="stat-num">10+</div>
+            <div className="b-subtitle">Experience</div>
+            <div className="stat-num">2+</div>
           </div>
-          <p className="b-subtitle" style={{fontSize: '0.65rem', opacity: 0.8}}>Successful Projects</p>
+          <p className="b-subtitle" style={{fontSize: '0.65rem', opacity: 0.8}}>Years of Professional Experience</p>
         </div>
 
         {/* MINDSET */}

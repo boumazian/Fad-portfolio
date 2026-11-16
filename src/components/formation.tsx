@@ -139,36 +139,37 @@ import FormationItem from "./ui/formationItem";
 import { GraduationCap, Award, BookOpen, ShieldCheck, Cpu, Network } from "lucide-react";
 
 const formations = [
+  // Diplomas first, then Cisco certifications (newest → oldest)
   {
-    title: "Diplôme de Technicien Spécialisé",
-    date: "Juin 2024",
-    etablissement: "ISTA Bab Tizimi, Meknès",
-    description1: "Infrastructure Digitale, Option: Cloud Computing.",
-    tag: "Diplôme",
-    link: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+    title: "Specialized Technician Diploma — Digital Infrastructure",
+    date: "June 2024",
+    etablissement: "ISTA Bab Tizimi (OFPPT), Meknès",
+    description1: "Digital Infrastructure, Cloud Computing option.",
+    tag: "Diploma",
+    link: "#", // TODO: add the diploma PDF to /public and link it here (button is hidden while "#")
     icon: <GraduationCap size={22} />
   },
   {
-    title: "Certificat de Formation Qualifiante",
-    date: "Juin 2024",
-    etablissement: "ISTA Bab Tizimi, Meknès",
-    description1: "Testeur d'intrusions cybernétiques.",
+    title: "Penetration Testing Certificate",
+    date: "June 2024",
+    etablissement: "ISTA Bab Tizimi (OFPPT), Meknès",
+    description1: "Qualifying training program in cyber penetration testing.",
     tag: "Security",
     link: "#",
     icon: <ShieldCheck size={22} />
   },
   {
-    title: "Baccalauréat",
-    date: "Juin 2022",
-    etablissement: "Lycée Zitoune, Meknès",
-    description1: "Filière Sciences de la Vie et de la Terre.",
-    tag: "Bac",
+    title: "Baccalaureate — Life & Earth Sciences",
+    date: "June 2022",
+    etablissement: "Zitoune High School, Meknès",
+    description1: "Life and Earth Sciences (SVT) track.",
+    tag: "High School",
     link: "#",
     icon: <BookOpen size={22} />
   },
   {
-    title: "Commutation, Routage et Sans Fil",
-    date: "Mai 2024",
+    title: "Switching, Routing & Wireless Essentials",
+    date: "May 2024",
     etablissement: "Cisco Networking Academy",
     description1: "CCNAv7 — Essential networking protocols and wireless configurations.",
     tag: "CCNA",
@@ -176,31 +177,31 @@ const formations = [
     icon: <Network size={22} />
   },
   {
-    title: "Introduction aux Réseaux",
-    date: "Juin 2023",
+    title: "Introduction to IoT",
+    date: "April 2024",
     etablissement: "Cisco Networking Academy",
-    description1: "CCNAv7 — Fundamentals of network architectures and communications.",
-    tag: "CCNA",
+    description1: "Exploring the Internet of Things ecosystem.",
+    tag: "IoT",
     link: "#",
-    icon: <Network size={22} />
+    icon: <Cpu size={22} />
   },
   {
     title: "Cybersecurity Essentials",
-    date: "Mars 2023",
+    date: "March 2024",
     etablissement: "Cisco Networking Academy",
-    description1: "CCNAv7 — Fundamental principles of securing digital infrastructures.",
+    description1: "Fundamental principles of securing digital infrastructures.",
     tag: "Security",
     link: "#",
     icon: <ShieldCheck size={22} />
   },
   {
-    title: "Introduction to IoT",
-    date: "Avril 2024",
+    title: "Introduction to Networks",
+    date: "June 2023",
     etablissement: "Cisco Networking Academy",
-    description1: "CCNAv7 — Exploring the Internet of Things ecosystem.",
-    tag: "IoT",
+    description1: "CCNAv7 — Fundamentals of network architectures and communications.",
+    tag: "CCNA",
     link: "#",
-    icon: <Cpu size={22} />
+    icon: <Network size={22} />
   },
 ];
 

@@ -111,16 +111,60 @@
 // }
 "use client";
 import { useTheme } from "@/context/ThemeContext";
-import CardProject from "@/components/ui/cardProject";
+import CardProject, { type CardProps } from "@/components/ui/cardProject";
+import { LayoutDashboard, MessageSquare, Globe, Cloud } from "lucide-react";
 
-const PROJECTS = [
-  { title:"Fast Transaction", description:"Faster transactions — money arrives in realtime", tags:["Node.js","API","FinTech"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-  { title:"Secure Payments", description:"End-to-end encrypted payment system with real-time fraud detection", tags:["Security","React","Stripe"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-  { title:"Cloud Dashboard", description:"Infrastructure monitoring dashboard for Azure & AWS resources", tags:["Azure","Next.js","Terraform"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-  { title:"Portfolio v2", description:"Modern portfolio with dark/light mode and animations", tags:["Next.js","TypeScript","Tailwind"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-  { title:"VPC Automation", description:"Automated VPC setup with subnet routing and security groups", tags:["AWS","CloudFormation","Network"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-  { title:"IAM Manager", description:"Role-based access control with AWS Cognito", tags:["IAM","Cognito","Security"], imageUrl:"https://pagedone.io/asset/uploads/1695365240.png" },
-];
+// Real projects only. Each card shows a "GitHub" button (github) and/or a
+// "Live Demo" button (link). Add a screenshot in /public/projects/ and set
+// imageUrl to replace the generated cover.
+const PROJECTS: CardProps[] = [
+  {
+    title: "Tandim — Life Dashboard",
+    description: "An all-in-one dashboard that brings tasks, daily prayer tracking, self-care routines, EN/DE language learning and a media log into a single hub.",
+    highlights: [
+      "Task board plus a prayer tracker with weekly, monthly and yearly heatmap views",
+      "Pluggable storage layer: works offline with localStorage, Supabase/PostgreSQL schema ready for production",
+      "Responsive app shell with sidebar navigation and a custom amethyst dark theme",
+    ],
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS"],
+    github: "https://github.com/boumazian/tandim",
+    icon: <LayoutDashboard size={34} />,
+  },
+  {
+    title: "Chatty Realtime",
+    description: "A full-stack chat app built around secure authentication. The auth layer is done; real-time messaging with Socket.io is next.",
+    highlights: [
+      "JWT sessions in httpOnly, SameSite=strict cookies; passwords hashed with bcrypt",
+      "Login/register forms validated with React Hook Form + Zod, with protected routes",
+      "Express + MongoDB REST API; client state with Zustand and React Query",
+    ],
+    tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT"],
+    github: "https://github.com/boumazian/chatty-realtime",
+    status: "In progress",
+    icon: <MessageSquare size={34} />,
+  },
+  {
+    title: "Developer Portfolio",
+    description: "This website: a responsive, multi-page portfolio with dark/light themes and a working contact form.",
+    highlights: [
+      "Next.js App Router with statically pre-rendered pages, deployed on Netlify",
+      "Contact form connected to Formspree with loading, success and error states",
+      "Responsive layout from 390px phones to 1440px desktops",
+    ],
+    tags: ["Next.js 16", "React 19", "TypeScript", "Netlify"],
+    github: "https://github.com/boumazian/Fad-portfolio",
+    link: "https://fad-bo.netlify.app/",
+    icon: <Globe size={34} />,
+  },
+  {
+    // Hidden until a public repo URL is added below (cards need a GitHub or Live Demo link).
+    title: "AWS Cloud Infrastructure",
+    description: "Cloud infrastructure setup and automation using Terraform/CloudFormation with architecture design.",
+    tags: ["AWS", "Terraform", "CloudFormation"],
+    github: "",
+    icon: <Cloud size={34} />,
+  },
+].filter(p => p.github || p.link);
 
 export default function Projects() {
   const { dark } = useTheme();
@@ -194,7 +238,7 @@ export default function Projects() {
           Featured <span>Projects</span>
         </h2>
         <p className="p-sub">
-          Explore a collection of projects that showcase my skills, creativity, and problem-solving abilities.
+          Real projects I&apos;ve built: open the code on GitHub or try the live demo.
         </p>
 
         <div className="p-grid">

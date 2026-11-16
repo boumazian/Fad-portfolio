@@ -3,18 +3,19 @@ import Link from "next/link";
 import { Github, Linkedin, Instagram, Facebook } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 
-// Updated to use Anchor tags for smooth scrolling in the same page
+// "/#id" anchors work from every page (sub-pages navigate home, then scroll)
 const COL1 = [
-  { href: "#home", label: "Home" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" }
+  { href: "/#home", label: "Home" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#contact", label: "Contact" }
 ];
 
 const COL2 = [
   { href: "/aboutme", label: "About Me" },
-  { href: "/formation", label: "Formation" }, // Moved here if it's a separate page
-  { href: "/hobbiesForm", label: "Hobbies" }
+  { href: "/education", label: "Education" },
+  { href: "/hobbies", label: "Hobbies" }
 ];
 
 export default function Footer() {
@@ -64,7 +65,7 @@ export default function Footer() {
                 Fad-Bo<span className="grad"></span>
               </div>
               <p className="ft-desc">
-                Full-Stack Developer specializing in Cloud Infrastructure. Building scalable solutions with AWS and modern web tech.
+                Full-Stack Cloud Developer building web apps with Next.js and automating AWS infrastructure.
               </p>
             </div>
 
@@ -72,13 +73,13 @@ export default function Footer() {
               <div className="ft-ch">Navigation</div>
               <div className="ft-links">
                 {COL1.map((l) => (
-                  <a key={l.href} href={l.href}>{l.label}</a>
+                  <Link key={l.href} href={l.href}>{l.label}</Link>
                 ))}
               </div>
             </div>
 
             <div>
-              <div className="ft-ch">Connect</div>
+              <div className="ft-ch">More</div>
               <div className="ft-links">
                 {COL2.map((l) => (
                   <Link key={l.href} href={l.href}>{l.label}</Link>
@@ -92,10 +93,10 @@ export default function Footer() {
           <div className="ft-bot">
             <span className="ft-copy">© 2026 Fadoua Boumazian. Made with ❤️ </span>
             <div className="ft-socs">
-              <a href="https://www.facebook.com/profile.php?id=100089240119734" target="_blank" rel="noopener noreferrer" className="ft-sc"><Facebook size={18} /></a>
-              <a href="https://www.instagram.com/fadouaboumazian?igsh=MWZxajh1aGgxZGt5bg==" target="_blank" rel="noopener noreferrer" className="ft-sc"><Instagram size={18} /></a>
               <a href="https://www.linkedin.com/in/fadoua-boumazian-6656a8298/" target="_blank" rel="noopener noreferrer" className="ft-sc"><Linkedin size={18} /></a>
               <a href="https://github.com/boumazian" target="_blank" rel="noopener noreferrer" className="ft-sc"><Github size={18} /></a>
+              <a href="https://www.instagram.com/fadouaboumazian" target="_blank" rel="noopener noreferrer" className="ft-sc"><Instagram size={18} /></a>
+              <a href="https://www.facebook.com/profile.php?id=100089240119734" target="_blank" rel="noopener noreferrer" className="ft-sc"><Facebook size={18} /></a>
             </div>
           </div>
         </div>

@@ -61,18 +61,18 @@ export default function ContactLeft() {
           <div className="cl-info">
             <div className="cl-row"><span className="cl-ic"><Phone size={13}/></span>+212 719 133 915</div>
             {/* رابط الإيميل المباشر */}
-            <a href="mailto:studentfadoua@gmail.com" className="cl-row">
+            <a href="mailto:boumazianfadoua@gmail.com" className="cl-row">
               <span className="cl-ic"><Mail size={13}/></span>
-              studentfadoua@gmail.com
+              boumazianfadoua@gmail.com
             </a>
             <div className="cl-row"><span className="cl-ic"><MapPin size={13}/></span>Meknes, Morocco</div>
           </div>
         </div>
         <div className="cl-soc">
-          <a href="https://www.facebook.com/profile.php?id=100089240119734" target="_blank" rel="noopener noreferrer" className="cl-a"><Facebook size={15}/></a>
-          <a href="https://www.instagram.com/fadouaboumazian" target="_blank" rel="noopener noreferrer" className="cl-a"><Instagram size={15}/></a>
           <a href="https://www.linkedin.com/in/fadoua-boumazian-6656a8298/" target="_blank" rel="noopener noreferrer" className="cl-a"><Linkedin size={15}/></a>
           <a href="https://github.com/boumazian" target="_blank" rel="noopener noreferrer" className="cl-a"><Github size={15}/></a>
+          <a href="https://www.instagram.com/fadouaboumazian" target="_blank" rel="noopener noreferrer" className="cl-a"><Instagram size={15}/></a>
+          <a href="https://www.facebook.com/profile.php?id=100089240119734" target="_blank" rel="noopener noreferrer" className="cl-a"><Facebook size={15}/></a>
         </div>
       </div>
     </>

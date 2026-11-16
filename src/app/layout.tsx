@@ -11,7 +11,7 @@ const dmSans = DM_Sans({ variable: "--font-dm", subsets: ["latin"], weight: ["30
 
 export const metadata: Metadata = {
   title: "Fadoua Boumazian — Portfolio",
-  description: "Technicienne spécialisée en infrastructure digitale & cloud computing",
+  description: "Fadoua Boumazian — Full-Stack Cloud Developer in Meknès, Morocco. I build web apps with Next.js & Prisma and automate AWS infrastructure with CloudFormation.",
 };
 
 const THEME_CSS = `
