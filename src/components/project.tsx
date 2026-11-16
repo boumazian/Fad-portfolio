@@ -1,6 +1,6 @@
 import CardProject, { type CardProps } from "@/components/ui/cardProject";
 import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/featuredProject";
-import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed } from "lucide-react";
+import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed, Gift } from "lucide-react";
 
 // Production case studies → featured full-width cards (alternating layout).
 // Only set `github` for PUBLIC repos; private ones get a lock badge instead of a 404 link.
@@ -77,6 +77,29 @@ const FEATURED: FeaturedProjectProps[] = [{
     { group: "Auth & Deploy", items: ["Firebase Authentication", "Netlify", "AWS Amplify"] },
   ],
   contribution: "Solo full-stack developer: designed the DynamoDB data model with secondary indexes, wrote the AWS CloudFormation templates, built the REST APIs and S3 image uploads, integrated Firebase Auth and developed the role-based storefront and dashboard.",
+}, {
+  name: "Gift a Smile",
+  badge: "Featured · Social Impact",
+  tagline: "A donation platform in Arabic, English and French that tracks, live, how many children a community Eid-clothing campaign has fully clothed.",
+  role: "Solo Full-Stack Developer",
+  period: "Feb – Mar 2026 · built in 2 weeks",
+  icon: <Gift size={30} />,
+  privateNote: "The code is private. Happy to walk through the Firestore logic and security rules in an interview.",
+  contactLabel: "Ask me for a demo",
+  problem: "Grassroots charity drives run on WhatsApp threads and spreadsheets, so donors can't see progress and organizers lose track of pledges.",
+  solution: "A public site where donors pledge in one tap, with a live progress bar toward the campaign goal and a secured admin dashboard to manage every pledge.",
+  features: [
+    "Live impact tracking from Firestore: children fully clothed, calculated from item and cash donations",
+    "Trilingual (Arabic, English, French) with full right-to-left layout switching for Arabic",
+    "Secured admin dashboard: Firebase Auth with an admin allowlist, pledge search and filters, stock adjustments",
+    "International giving guide for donors abroad (Taptap Send) and direct WhatsApp integration",
+  ],
+  stack: [
+    { group: "Framework & Styling", items: ["Next.js 16 (App Router)", "React 19", "TypeScript 5", "Tailwind CSS 4", "Lucide React"] },
+    { group: "Backend & Security", items: ["Firebase 12", "Cloud Firestore", "Firebase Auth", "Security Rules (admin allowlist)"] },
+    { group: "Hosting & Tooling", items: ["Netlify", "Firebase CLI", "ESLint 9"] },
+  ],
+  contribution: "Solo full-stack developer, built in 2 weeks: 13 modular React components, the Firestore counting logic, the auth-gated admin dashboard with its security rules, and the trilingual i18n/RTL setup.",
 }];
 
 // Smaller public projects. Each card shows a "GitHub" button (github) and/or a
