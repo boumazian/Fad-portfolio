@@ -1,6 +1,6 @@
 import CardProject, { type CardProps } from "@/components/ui/cardProject";
 import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/featuredProject";
-import { LayoutDashboard, MessageSquare, Globe, Cloud, ShoppingBag, Store } from "lucide-react";
+import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed } from "lucide-react";
 
 // Production case studies → featured full-width cards (alternating layout).
 // Only set `github` for PUBLIC repos; private ones get a lock badge instead of a 404 link.
@@ -54,11 +54,34 @@ const FEATURED: FeaturedProjectProps[] = [{
     { group: "Tooling", items: ["ESLint 9", "Git", "GitHub"] },
   ],
   contribution: "Solo full-stack developer: brand design, the responsive storefront, a normalized PostgreSQL database with RLS security policies, the Firebase-to-Supabase data migration and the 7-tab admin dashboard.",
+}, {
+  name: "Koul Ou Skout",
+  badge: "Featured · Serverless on AWS",
+  tagline: "A serverless restaurant marketplace where local restaurants can put their menus online and take orders within minutes.",
+  role: "Solo Full-Stack Developer",
+  period: "May 2025 – Mar 2026",
+  icon: <UtensilsCrossed size={30} />,
+  privateNote: "The code is private. Happy to walk through the AWS architecture and data model in an interview.",
+  problem: "Small restaurants rarely have their own online ordering and usually rely on costly third-party platforms.",
+  solution: "A two-sided marketplace where restaurant owners sign up, publish menus and manage incoming orders, while customers browse menus, fill a cart and check out.",
+  features: [
+    "Self-service restaurant onboarding with Firebase Auth and Amazon S3 logo uploads",
+    "Owner dashboard to accept or refuse orders, manage menus with paid add-ons and edit profile settings",
+    "Customer ordering flow: dynamic restaurant menu pages, search and category filters, a persistent cart and checkout",
+    "Location-aware landing page with an interactive Leaflet/OpenStreetMap delivery-zone finder",
+  ],
+  stack: [
+    { group: "Frontend", items: ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion"] },
+    { group: "Maps", items: ["Leaflet", "React-Leaflet", "OpenStreetMap Nominatim API"] },
+    { group: "Backend & Cloud", items: ["Next.js Route Handlers (REST API)", "AWS SDK v3", "Amazon DynamoDB", "Amazon S3", "AWS CloudFormation (IaC)"] },
+    { group: "Auth & Deploy", items: ["Firebase Authentication", "Netlify", "AWS Amplify"] },
+  ],
+  contribution: "Solo full-stack developer: designed the DynamoDB data model with secondary indexes, wrote the AWS CloudFormation templates, built the REST APIs and S3 image uploads, integrated Firebase Auth and developed the role-based storefront and dashboard.",
 }];
 
-// Public projects. Each card shows a "GitHub" button (github) and/or a
-// "Live Demo" button (link). Add a screenshot in /public/projects/ and set
-// imageUrl to replace the generated cover.
+// Smaller public projects. Each card shows a "GitHub" button (github) and/or a
+// "Live Demo" button (link); cards without either are hidden. Add a screenshot
+// in /public/projects/ and set imageUrl to replace the generated cover.
 const PROJECTS: CardProps[] = [
   {
     title: "Tandim — Life Dashboard",
@@ -73,19 +96,6 @@ const PROJECTS: CardProps[] = [
     icon: <LayoutDashboard size={34} />,
   },
   {
-    title: "Chatty Realtime",
-    description: "A full-stack chat app built around secure authentication. The auth layer is done; real-time messaging with Socket.io is next.",
-    highlights: [
-      "JWT sessions in httpOnly, SameSite=strict cookies; passwords hashed with bcrypt",
-      "Login/register forms validated with React Hook Form + Zod, with protected routes",
-      "Express + MongoDB REST API; client state with Zustand and React Query",
-    ],
-    tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT"],
-    github: "https://github.com/boumazian/chatty-realtime",
-    status: "In progress",
-    icon: <MessageSquare size={34} />,
-  },
-  {
     title: "Developer Portfolio",
     description: "This website: a responsive, multi-page portfolio with dark/light themes and a working contact form.",
     highlights: [
@@ -97,14 +107,6 @@ const PROJECTS: CardProps[] = [
     github: "https://github.com/boumazian/Fad-portfolio",
     link: "https://fad-bo.netlify.app/",
     icon: <Globe size={34} />,
-  },
-  {
-    // Hidden until a public repo URL is added below (cards need a GitHub or Live Demo link).
-    title: "AWS Cloud Infrastructure",
-    description: "Cloud infrastructure setup and automation using Terraform/CloudFormation with architecture design.",
-    tags: ["AWS", "Terraform", "CloudFormation"],
-    github: "",
-    icon: <Cloud size={34} />,
   },
 ].filter(p => p.github || p.link);
 
@@ -118,7 +120,10 @@ export default function Projects() {
           background: radial-gradient(circle, var(--glow) 0%, transparent 70%); opacity: .5; pointer-events: none;
         }
         .p-container { max-width: 1240px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
-        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+        .p-more { display: flex; align-items: center; gap: 1rem; margin: 4rem 0 2rem; font-family: var(--font-syne), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); }
+        .p-more::after { content: ""; flex: 1; height: 1px; background: var(--border-accent); }
+        /* auto-fit: any number of cards stretches to fill the row (no empty columns) */
+        .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
 
         @media (max-width: 768px) {
           .projects { padding: 90px 0; }
@@ -129,12 +134,13 @@ export default function Projects() {
 
       <div className="p-container">
         <h2 id="projects-title" className="sec-title">Featured <span className="grad">Projects</span></h2>
-        <p className="sec-sub">Production work and personal projects: open the code on GitHub or try the live demo.</p>
+        <p className="sec-sub">Production case studies first, then personal projects with their code on GitHub.</p>
 
         {FEATURED.map((f, i) => (
           <FeaturedProject key={f.name} {...f} reverse={i % 2 === 1} />
         ))}
 
+        <h3 className="p-more">More projects</h3>
         <div className="p-grid">
           {PROJECTS.map(p => (
             <CardProject key={p.title} {...p} />
