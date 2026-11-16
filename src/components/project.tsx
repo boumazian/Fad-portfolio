@@ -1,6 +1,6 @@
 import CardProject, { type CardProps } from "@/components/ui/cardProject";
 import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/featuredProject";
-import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed, Gift } from "lucide-react";
+import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed, Gift, Heart } from "lucide-react";
 
 // Production case studies → featured full-width cards (alternating layout).
 // Only set `github` for PUBLIC repos; private ones get a lock badge instead of a 404 link.
@@ -102,9 +102,10 @@ const FEATURED: FeaturedProjectProps[] = [{
   contribution: "Solo full-stack developer, built in 2 weeks: 13 modular React components, the Firestore counting logic, the auth-gated admin dashboard with its security rules, and the trilingual i18n/RTL setup.",
 }];
 
-// Smaller public projects. Each card shows a "GitHub" button (github) and/or a
-// "Live Demo" button (link); cards without either are hidden. Add a screenshot
-// in /public/projects/ and set imageUrl to replace the generated cover.
+// Smaller projects. Each card shows a "GitHub" button (github) and/or a
+// "Live Demo" button (link); private ones set `privateLabel` (lock badge +
+// contact CTA). Cards with none of these are hidden. Add a screenshot in
+// /public/projects/ and set imageUrl to replace the generated cover.
 const PROJECTS: CardProps[] = [
   {
     title: "Tandim — Life Dashboard",
@@ -119,6 +120,18 @@ const PROJECTS: CardProps[] = [
     icon: <LayoutDashboard size={34} />,
   },
   {
+    title: "Birthday Love",
+    description: "Birthday texts and e-cards feel generic. This interactive love letter opens a CSS-drawn sealed envelope and types out a heartfelt message in real time, with music and confetti.",
+    highlights: [
+      "Two-stage experience: the envelope opens into a letter with a custom typewriter hook, canvas-confetti bursts and HTML5 Audio",
+      "Accessible by design: respects reduced motion, Esc to reseal, screen-reader labels",
+      "All copy and assets in a typed content.ts module, so it can be re-personalized in minutes",
+    ],
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "canvas-confetti"],
+    privateLabel: "Private",
+    icon: <Heart size={34} />,
+  },
+  {
     title: "Developer Portfolio",
     description: "This website: a responsive, multi-page portfolio with dark/light themes and a working contact form.",
     highlights: [
@@ -131,7 +144,7 @@ const PROJECTS: CardProps[] = [
     link: "https://fad-bo.netlify.app/",
     icon: <Globe size={34} />,
   },
-].filter(p => p.github || p.link);
+].filter(p => p.github || p.link || p.privateLabel);
 
 export default function Projects() {
   return (
@@ -147,6 +160,10 @@ export default function Projects() {
         .p-more::after { content: ""; flex: 1; height: 1px; background: var(--border-accent); }
         /* auto-fit: any number of cards stretches to fill the row (no empty columns) */
         .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+        /* 2-column range (tablet): a lone last card spans the row instead of leaving a gap */
+        @media (min-width: 769px) and (max-width: 1147px) {
+          .p-grid > article:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+        }
 
         @media (max-width: 768px) {
           .projects { padding: 90px 0; }
