@@ -1,9 +1,10 @@
 import CardProject, { type CardProps } from "@/components/ui/cardProject";
 import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/featuredProject";
-import { LayoutDashboard, MessageSquare, Globe, Cloud, ShoppingBag } from "lucide-react";
+import { LayoutDashboard, MessageSquare, Globe, Cloud, ShoppingBag, Store } from "lucide-react";
 
-// Professional, proprietary project → featured full-width card without a GitHub link.
-const FEATURED: FeaturedProjectProps = {
+// Production case studies → featured full-width cards (alternating layout).
+// Set `github` / `link` when a repo or live URL is public; `privateNote` otherwise.
+const FEATURED: FeaturedProjectProps[] = [{
   name: "KeepSize",
   badge: "Featured · Shopify App",
   tagline: "A Shopify app that stops size returns before the box ships, by turning “I’ll order both sizes” into “I’ll keep one.”",
@@ -27,7 +28,31 @@ const FEATURED: FeaturedProjectProps = {
     { group: "Testing", items: ["Vitest", "Playwright", "Shopify CLI"] },
   ],
   contribution: "Lead engineer building the product end-to-end: architecture, the event-driven serverless backend, frontends, billing, GDPR compliance, the Claude AI integration and Shopify App Store submission.",
-};
+}, {
+  name: "Gourmandise Saine",
+  badge: "Featured · E-commerce",
+  tagline: "A full-stack online store and back-office for an artisanal Moroccan brand of healthy snacks, from the storefront to the stock room.",
+  role: "Solo Full-Stack Developer",
+  icon: <Store size={30} />,
+  privateNote: "The code isn't public. Happy to demo the storefront and the admin dashboard in an interview.",
+  contactLabel: "Ask me for a demo",
+  github: "", // add the repo URL here if it becomes public
+  problem: "A small healthy-snack business was taking orders by hand, with no view of stock, ingredient costs, or profit.",
+  solution: "A custom store plus an admin dashboard where orders, inventory, bundles and finances update live in one place, backed by a secure PostgreSQL database.",
+  features: [
+    "Storefront with product options, weight-based price tiers, bundles (“packs”), a browser cart and promo codes",
+    "Server-side order pricing in a PostgreSQL function (create_order) for secure transaction handling",
+    "Live 7-tab admin dashboard for products, packs and orders, with Supabase Realtime updates and WhatsApp customer messaging",
+    "Automated stock and finance tracking: raw ingredients, finished goods, revenue, costs and profit margins",
+  ],
+  stack: [
+    { group: "Frontend", items: ["Next.js 16 (App Router)", "React 19", "TypeScript 5", "Tailwind CSS v4", "Lucide React"] },
+    { group: "Backend / DB", items: ["Supabase", "PostgreSQL", "Auth", "Realtime", "Row-Level Security", "PL/pgSQL functions", "@supabase/ssr"] },
+    { group: "Media & Migration", items: ["Cloudinary Upload Widget", "Firebase Firestore → Supabase (firebase-admin script)"] },
+    { group: "Tooling", items: ["ESLint 9", "Git", "GitHub"] },
+  ],
+  contribution: "Solo full-stack developer: brand design, the responsive storefront, a normalized PostgreSQL database with RLS security policies, the Firebase-to-Supabase data migration and the 7-tab admin dashboard.",
+}];
 
 // Public projects. Each card shows a "GitHub" button (github) and/or a
 // "Live Demo" button (link). Add a screenshot in /public/projects/ and set
@@ -104,7 +129,9 @@ export default function Projects() {
         <h2 id="projects-title" className="sec-title">Featured <span className="grad">Projects</span></h2>
         <p className="sec-sub">Production work and personal projects: open the code on GitHub or try the live demo.</p>
 
-        <FeaturedProject {...FEATURED} />
+        {FEATURED.map((f, i) => (
+          <FeaturedProject key={f.name} {...f} privateNote={f.github || f.link ? undefined : f.privateNote} reverse={i % 2 === 1} />
+        ))}
 
         <div className="p-grid">
           {PROJECTS.map(p => (

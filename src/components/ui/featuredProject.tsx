@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { Lock, ArrowRight, Star } from "lucide-react";
+import { Lock, ArrowRight, Star, Github, ExternalLink } from "lucide-react";
 
 export interface FeaturedProjectProps {
   name: string;
   tagline: string;
-  company: string;
+  company?: string;
   role: string;
   problem: string;
   solution: string;
@@ -13,28 +13,37 @@ export interface FeaturedProjectProps {
   contribution: string;
   badge?: string;
   icon?: ReactNode;
-  privateNote?: string; // shown instead of a GitHub link for proprietary work
-  link?: string;        // optional public URL (e.g. App Store listing)
+  privateNote?: string;  // shown when the code isn't public
+  github?: string;       // public repo → "GitHub" button
+  link?: string;         // public URL (live site, App Store listing) → "Visit" button
+  contactLabel?: string; // CTA text when there is no public link
+  reverse?: boolean;     // identity panel on the right (alternate featured cards)
 }
 
 export default function FeaturedProject({
-  name, tagline, company, role, problem, solution, features, stack, contribution, badge, icon, privateNote, link,
+  name, tagline, company, role, problem, solution, features, stack, contribution, badge, icon,
+  privateNote, github, link, contactLabel = "Ask me about the architecture", reverse,
 }: FeaturedProjectProps) {
+  const id = `fp-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <>
       <style>{`
         .fp {
-          display: grid; grid-template-columns: minmax(280px, 0.85fr) 1.6fr;
+          display: grid; grid-template-columns: minmax(300px, 0.95fr) 1.6fr;
           border-radius: 32px; overflow: hidden; margin-bottom: 2.5rem;
           background: var(--card); border: 1px solid var(--border-accent);
           box-shadow: var(--shadow);
         }
+
+        .fp.rev { grid-template-columns: 1.6fr minmax(300px, 0.95fr); }
+        .fp.rev .fp-side { order: 2; }
 
         /* Left: identity panel (always dark gradient → white text stays readable) */
         .fp-side {
           position: relative; padding: 2.5rem; color: #fff;
           background: var(--grad-deep);
           display: flex; flex-direction: column; gap: 1.1rem;
+          container-type: inline-size; /* title scales with the panel width (cqi) */
         }
         .fp-side::after {
           content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -49,7 +58,7 @@ export default function FeaturedProject({
           width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
           background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); margin-top: .5rem;
         }
-        .fp-name { font-family: var(--font-syne), sans-serif; font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.05; }
+        .fp-name { font-family: var(--font-syne), sans-serif; font-size: 1.6rem; font-size: min(2.2rem, 8.4cqi); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.1; overflow-wrap: break-word; }
         .fp-tagline { font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0; }
         .fp-role { font-size: .9rem; font-weight: 700; color: #fff; }
         .fp-role span { font-weight: 500; color: rgba(255,255,255,0.8); }
@@ -66,6 +75,9 @@ export default function FeaturedProject({
           transition: transform .25s, box-shadow .25s;
         }
         .fp-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5); }
+        .fp-ctas { display: flex; gap: .6rem; }
+        .fp-ctas .fp-cta { flex: 1; }
+        .fp-cta.ghost { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 
         /* Right: details */
         .fp-main { padding: 2.5rem; display: flex; flex-direction: column; gap: 1.8rem; }
@@ -87,7 +99,8 @@ export default function FeaturedProject({
         .fp-contrib { margin: 0; font-size: .92rem; line-height: 1.7; color: var(--txt2); }
 
         @media (max-width: 980px) {
-          .fp { grid-template-columns: 1fr; }
+          .fp, .fp.rev { grid-template-columns: 1fr; }
+          .fp.rev .fp-side { order: 0; }
           .fp-feat { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
@@ -99,24 +112,29 @@ export default function FeaturedProject({
         }
       `}</style>
 
-      <article className="fp" aria-labelledby="fp-name">
+      <article className={`fp ${reverse ? "rev" : ""}`} aria-labelledby={id}>
         <div className="fp-side">
           <div className="fp-badges">
             {badge && <span className="fp-badge"><Star size={13} aria-hidden="true" /> {badge}</span>}
             {privateNote && <span className="fp-badge"><Lock size={13} aria-hidden="true" /> Private</span>}
           </div>
           {icon && <div className="fp-icon" aria-hidden="true">{icon}</div>}
-          <h3 id="fp-name" className="fp-name">{name}</h3>
+          <h3 id={id} className="fp-name">{name}</h3>
           <p className="fp-tagline">{tagline}</p>
-          <div className="fp-role">{role} <span>· {company}</span></div>
+          <div className="fp-role">{role}{company && <span> · {company}</span>}</div>
 
           <div className="fp-foot">
             {privateNote && (
               <div className="fp-private"><Lock size={15} aria-hidden="true" /><span>{privateNote}</span></div>
             )}
-            {link
-              ? <a className="fp-cta" href={link} target="_blank" rel="noopener noreferrer">View project <ArrowRight size={16} aria-hidden="true" /></a>
-              : <a className="fp-cta" href="/#contact">Ask me about the architecture <ArrowRight size={16} aria-hidden="true" /></a>}
+            {link || github ? (
+              <div className="fp-ctas">
+                {link && <a className="fp-cta" href={link} target="_blank" rel="noopener noreferrer"><ExternalLink size={16} aria-hidden="true" /> Visit</a>}
+                {github && <a className={`fp-cta ${link ? "ghost" : ""}`} href={github} target="_blank" rel="noopener noreferrer" aria-label={`${name}: source code on GitHub`}><Github size={16} aria-hidden="true" /> GitHub</a>}
+              </div>
+            ) : (
+              <a className="fp-cta" href="/#contact">{contactLabel} <ArrowRight size={16} aria-hidden="true" /></a>
+            )}
           </div>
         </div>
 
