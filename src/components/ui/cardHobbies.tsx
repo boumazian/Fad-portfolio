@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CardProps {
@@ -54,7 +55,7 @@ export default function CardHobbies({ imageUrls, title, description, emoji = "âœ
           {imageUrls.length > 0 ? (
             <>
               {imageUrls.map((url, i) => (
-                <img key={url} src={url} alt={`${title}, photo ${i + 1} of ${imageUrls.length}`} className={`ch-img ${i === cur ? "on" : "off"}`} aria-hidden={i !== cur} loading="lazy" />
+                <Image key={url} src={url} alt={`${title}, photo ${i + 1} of ${imageUrls.length}`} fill sizes="(max-width: 600px) 100vw, 400px" className={`ch-img ${i === cur ? "on" : "off"}`} aria-hidden={i !== cur} />
               ))}
               <span className="ch-count" aria-hidden="true">{cur + 1}/{imageUrls.length}</span>
               {imageUrls.length > 1 && (

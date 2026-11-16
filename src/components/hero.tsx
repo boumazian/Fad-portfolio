@@ -130,6 +130,7 @@ export default function Hero({
                   src={photoSrc}
                   alt={`Illustrated portrait of ${name}`}
                   fill
+                  sizes="(max-width: 600px) 180px, (max-width: 968px) 240px, 320px"
                   className="object-cover object-top hover:scale-105 transition-transform duration-700"
                   priority
                 />

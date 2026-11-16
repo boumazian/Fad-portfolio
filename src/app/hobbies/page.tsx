@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/site";
 import CardHobbies from "@/components/ui/cardHobbies";
 import { Zap } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Hobbies & Interests",
+  description: "Beyond the code: first-aid rescuer, taekwondo, acting, dance, swimming, student ambassador and summer-camp coordinator.",
+  alternates: { canonical: "/hobbies" },
+  openGraph: { title: "Hobbies & Interests | Fadoua Boumazian", description: "Beyond the code: first-aid rescuer, taekwondo, acting, dance, swimming, student ambassador and summer-camp coordinator.", url: "/hobbies", images: [OG_IMAGE] },
+};
 
 const HOBBIES = [
   {

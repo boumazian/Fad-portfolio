@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/site";
 import { Mail, MapPin, Brain, ArrowUpRight, ShieldCheck, Zap } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "About Fadoua Boumazian: Full-Stack Cloud Developer based in Meknès, Morocco, with 2+ years of professional experience and open to remote work.",
+  alternates: { canonical: "/aboutme" },
+  openGraph: { title: "About | Fadoua Boumazian", description: "About Fadoua Boumazian: Full-Stack Cloud Developer based in Meknès, Morocco, with 2+ years of professional experience and open to remote work.", url: "/aboutme", images: [OG_IMAGE] },
+};
 
 export default function AboutMe() {
   return (
