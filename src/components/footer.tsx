@@ -1,7 +1,5 @@
-"use client";
 import Link from "next/link";
-import { Github, Linkedin, Instagram, Facebook } from "lucide-react";
-import { useTheme } from "@/context/ThemeContext";
+import { SOCIALS } from "@/lib/site";
 
 // "/#id" anchors work from every page (sub-pages navigate home, then scroll)
 const COL1 = [
@@ -9,94 +7,86 @@ const COL1 = [
   { href: "/#experience", label: "Experience" },
   { href: "/#skills", label: "Skills" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" }
+  { href: "/#contact", label: "Contact" },
 ];
 
 const COL2 = [
   { href: "/aboutme", label: "About Me" },
   { href: "/education", label: "Education" },
-  { href: "/hobbies", label: "Hobbies" }
+  { href: "/hobbies", label: "Hobbies" },
 ];
 
 export default function Footer() {
-  const { dark } = useTheme();
-  const t = dark ? "dk" : "lk";
-
   return (
     <>
       <style>{`
         .ft { background: var(--bg2); border-top: 1px solid var(--border); padding: 4rem 1.5rem 2rem; transition: background .4s, border-color .4s; }
         .ft-in { max-width: 1100px; margin: 0 auto; }
         .ft-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
-        
-        @media(max-width: 768px) { 
-          .ft-top { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-          .ft-desc { margin: 0 auto; }
-          .ft-name { justify-content: center; }
-          .ft-socs { justify-content: center; }
-          .ft-bot { flex-direction: column; text-align: center; }
-        }
 
-        .ft-name { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-        .ft-mark { width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg,#7c3aed,#0d9488); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff; }
-        .ft-desc { font-size: .9rem; color: var(--txt2); line-height: 1.8; max-width: 280px; opacity: 0.8; }
-        .ft-ch { font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 800; color: var(--txt3); margin-bottom: 1.2rem; }
-        .ft-links { display: flex; flex-direction: column; gap: .75rem; }
-        .ft-links a { font-size: .9rem; color: var(--txt2); text-decoration: none; transition: all .2s ease; }
-        .ft-links a:hover { color: var(--accent); transform: translateX(5px); }
-        
-        @media(max-width: 768px) { .ft-links a:hover { transform: translateY(-2px); } }
+        .ft-name { font-family: var(--font-syne), sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+        .ft-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
+        .ft-desc { font-size: .92rem; color: var(--txt2); line-height: 1.8; max-width: 300px; margin: 0; }
+        .ft-ch { font-size: .78rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 800; color: var(--txt3); margin: 0 0 1rem; }
+        .ft-links { display: flex; flex-direction: column; gap: .25rem; list-style: none; padding: 0; margin: 0; }
+        .ft-links a { display: inline-block; padding: 6px 0; font-size: .92rem; color: var(--txt2); text-decoration: none; transition: color .2s, transform .2s; }
+        .ft-links a:hover { color: var(--accent-txt); transform: translateX(5px); }
 
-        .ft-div { height: 1px; background: var(--border); margin-bottom: 2rem; opacity: 0.5; }
+        .ft-div { height: 1px; background: var(--border); margin-bottom: 2rem; }
         .ft-bot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
         .ft-copy { font-size: .85rem; color: var(--txt3); }
-        .ft-socs { display: flex; gap: .75rem; }
-        .ft-sc { width: 38px; height: 38px; border-radius: 11px; border: 1px solid var(--border); background: var(--soft); display: flex; align-items: center; justify-content: center; color: var(--txt2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .ft-sc:hover { color: white; border-color: var(--accent); background: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 15px -5px rgba(124, 58, 237, 0.4); }
-        .grad { background: linear-gradient(135deg, #7c3aed, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ft-socs { display: flex; gap: .6rem; }
+        .ft-sc { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--soft); display: flex; align-items: center; justify-content: center; color: var(--txt2); transition: all .3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .ft-sc:hover { color: #fff; border-color: var(--accent); background: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-accent); }
+
+        @media (max-width: 768px) {
+          .ft-top { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+          .ft-desc { margin: 0 auto; }
+          .ft-name, .ft-socs { justify-content: center; }
+          .ft-links { align-items: center; }
+          .ft-links a:hover { transform: translateY(-2px); }
+          .ft-bot { flex-direction: column; text-align: center; }
+        }
       `}</style>
 
-      <footer className={`ft ${t}`}>
+      <footer className="ft">
         <div className="ft-in">
           <div className="ft-top">
             <div>
               <div className="ft-name">
-                <span className="ft-mark">fb</span>
-                Fad-Bo<span className="grad"></span>
+                <span className="ft-mark" aria-hidden="true">fb</span>
+                Fad-BO
               </div>
               <p className="ft-desc">
                 Full-Stack Cloud Developer building web apps with Next.js and automating AWS infrastructure.
               </p>
             </div>
 
-            <div>
-              <div className="ft-ch">Navigation</div>
-              <div className="ft-links">
-                {COL1.map((l) => (
-                  <Link key={l.href} href={l.href}>{l.label}</Link>
-                ))}
-              </div>
-            </div>
+            <nav aria-label="Sections">
+              <h2 className="ft-ch">Navigation</h2>
+              <ul className="ft-links">
+                {COL1.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}
+              </ul>
+            </nav>
 
-            <div>
-              <div className="ft-ch">More</div>
-              <div className="ft-links">
-                {COL2.map((l) => (
-                  <Link key={l.href} href={l.href}>{l.label}</Link>
-                ))}
-              </div>
-            </div>
+            <nav aria-label="More pages">
+              <h2 className="ft-ch">More</h2>
+              <ul className="ft-links">
+                {COL2.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}
+              </ul>
+            </nav>
           </div>
 
           <div className="ft-div" />
 
           <div className="ft-bot">
-            <span className="ft-copy">© 2026 Fadoua Boumazian. Made with ❤️ </span>
+            <span className="ft-copy" suppressHydrationWarning>© {new Date().getFullYear()} Fadoua Boumazian. Made with ❤️</span>
             <div className="ft-socs">
-              <a href="https://www.linkedin.com/in/fadoua-boumazian-6656a8298/" target="_blank" rel="noopener noreferrer" className="ft-sc"><Linkedin size={18} /></a>
-              <a href="https://github.com/boumazian" target="_blank" rel="noopener noreferrer" className="ft-sc"><Github size={18} /></a>
-              <a href="https://www.instagram.com/fadouaboumazian" target="_blank" rel="noopener noreferrer" className="ft-sc"><Instagram size={18} /></a>
-              <a href="https://www.facebook.com/profile.php?id=100089240119734" target="_blank" rel="noopener noreferrer" className="ft-sc"><Facebook size={18} /></a>
+              {SOCIALS.map(({ href, label, Icon }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="ft-sc" aria-label={`${label} (opens in a new tab)`}>
+                  <Icon size={18} aria-hidden="true" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
