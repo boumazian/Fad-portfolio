@@ -62,7 +62,7 @@ export default function Hero({
         .h-title { margin:0 0 1.5rem; }
         .h-hi { display:block; font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight:700; color:var(--txt2); letter-spacing: 0.01em; margin-bottom:.75rem; }
         .h-hi strong { color:var(--txt); font-weight:800; }
-        .h-head { display:block; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:900; line-height:1.05; letter-spacing:-0.04em; color:var(--txt); }
+        .h-head { display:block; font-family: var(--font-head), sans-serif; font-size: clamp(2.5rem, 6vw, 4.4rem); font-weight:800; line-height:1.06; letter-spacing:-0.035em; color:var(--txt); }
         .h-sub { font-size: 1.05rem; line-height:1.7; color:var(--txt2); max-width:540px; margin:0 0 2.5rem; }
 
         /* Buttons */

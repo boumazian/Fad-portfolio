@@ -61,7 +61,7 @@ export default function Skills() {
           transition: background .3s, color .3s, transform .3s;
         }
         .sc:hover .sc-i { background: var(--grad); color: #fff; transform: scale(1.08); }
-        .sc-t { font-family: var(--font-syne), sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--txt); margin: 0; }
+        .sc-t { font-family: var(--font-head), sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--txt); margin: 0; }
 
         .sc-ps { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
         .sc-p {

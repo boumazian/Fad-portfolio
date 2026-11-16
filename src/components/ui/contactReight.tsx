@@ -39,7 +39,7 @@ export default function ContactReight() {
     <>
       <style>{`
         .cr { padding: 2.5rem; }
-        .cr-t { font-family: var(--font-syne), sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); margin: 0 0 1.4rem; }
+        .cr-t { font-family: var(--font-head), sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); margin: 0 0 1.4rem; }
         .cr-form { display: flex; flex-direction: column; gap: 1rem; }
         .cr-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         @media (max-width: 580px) { .cr-row { grid-template-columns: 1fr; } }

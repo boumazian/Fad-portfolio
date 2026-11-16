@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
 
-const syne = Syne({ variable: "--font-syne", subsets: ["latin"], weight: ["400","600","700","800"] });
+// Headings: clean, bold, highly legible. Body text stays DM Sans.
+const jakarta = Plus_Jakarta_Sans({ variable: "--font-head", subsets: ["latin"], weight: ["600","700","800"] });
 const dmSans = DM_Sans({ variable: "--font-dm", subsets: ["latin"], weight: ["300","400","500","600"] });
 
 export const metadata: Metadata = {
@@ -59,6 +60,7 @@ const THEME_CSS = `
     --accent:#7c3aed;--accent-2:#0d9488;--accent-txt:#a78bfa;
     --grad:linear-gradient(135deg,#7c3aed,#0d9488);
     --grad-deep:linear-gradient(150deg,#4c1d95 0%,#5b21b6 45%,#115e59 100%); /* white text on top passes AA */
+    --grad-text:linear-gradient(120deg,#a78bfa 0%,#5eead4 100%); /* ≥7:1 on --bg */
     --glow:rgba(124,58,237,0.32);--soft:rgba(124,58,237,0.12);--tsoft:rgba(13,148,136,0.12);
     --pill:rgba(255,255,255,0.06);--pilltxt:rgba(238,234,255,0.82);
     --inp:rgba(255,255,255,0.05);--inpborder:rgba(255,255,255,0.14);
@@ -75,6 +77,7 @@ const THEME_CSS = `
     --accent:#7c3aed;--accent-2:#0d9488;--accent-txt:#6d28d9;
     --grad:linear-gradient(135deg,#7c3aed,#0d9488);
     --grad-deep:linear-gradient(150deg,#4c1d95 0%,#5b21b6 45%,#115e59 100%); /* white text on top passes AA */
+    --grad-text:linear-gradient(120deg,#6d28d9 0%,#0f766e 100%); /* ≥5:1 on --bg */
     --glow:rgba(124,58,237,0.16);--soft:rgba(124,58,237,0.08);--tsoft:rgba(13,148,136,0.08);
     --pill:rgba(124,58,237,0.07);--pilltxt:rgba(14,10,29,0.78);
     --inp:#fff;--inpborder:rgba(124,58,237,0.22);
@@ -91,8 +94,11 @@ const THEME_CSS = `
     margin:0;
   }
 
+  /* All headings share one crisp, bold sans-serif */
+  h1,h2,h3,h4{font-family:var(--font-head),system-ui,sans-serif;text-rendering:optimizeLegibility;}
+
   .grad{
-    background:var(--grad);
+    background:var(--grad-text);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     background-clip:text;
@@ -100,10 +106,11 @@ const THEME_CSS = `
 
   /* Shared section heading (Skills, Experience, Projects, Contact) */
   .sec-title{
-    font-family:var(--font-syne),sans-serif;
-    font-size:clamp(2.2rem,5vw,3.5rem);
+    font-family:var(--font-head),sans-serif;
+    font-size:clamp(2.2rem,5vw,3.4rem);
     font-weight:800;
-    letter-spacing:-.03em;
+    line-height:1.1;
+    letter-spacing:-.025em;
     color:var(--txt);
     text-align:center;
     margin:0 0 1rem;
@@ -136,7 +143,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: THEME_CSS }} />
       </head>
-      <body className={`${syne.variable} ${dmSans.variable} antialiased`}>
+      <body className={`${jakarta.variable} ${dmSans.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

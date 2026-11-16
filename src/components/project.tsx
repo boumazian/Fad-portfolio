@@ -120,7 +120,7 @@ export default function Projects() {
           background: radial-gradient(circle, var(--glow) 0%, transparent 70%); opacity: .5; pointer-events: none;
         }
         .p-container { max-width: 1240px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
-        .p-more { display: flex; align-items: center; gap: 1rem; margin: 4rem 0 2rem; font-family: var(--font-syne), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); }
+        .p-more { display: flex; align-items: center; gap: 1rem; margin: 4rem 0 2rem; font-family: var(--font-head), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); }
         .p-more::after { content: ""; flex: 1; height: 1px; background: var(--border-accent); }
         /* auto-fit: any number of cards stretches to fill the row (no empty columns) */
         .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }

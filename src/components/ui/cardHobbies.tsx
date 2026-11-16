@@ -44,7 +44,7 @@ export default function CardHobbies({ imageUrls, title, description, emoji = "âœ
         .ch-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--txt3); }
 
         .ch-body { padding: 1.2rem 1.3rem 1.4rem; flex: 1; }
-        .ch-title { font-family: var(--font-syne), sans-serif; font-size: 1rem; font-weight: 700; color: var(--txt); margin: 0 0 .4rem; }
+        .ch-title { font-family: var(--font-head), sans-serif; font-size: 1rem; font-weight: 700; color: var(--txt); margin: 0 0 .4rem; }
         .ch-desc { font-size: .88rem; color: var(--txt2); line-height: 1.7; margin: 0; }
 
         .ch-count { position: absolute; top: 10px; right: 10px; padding: 3px 10px; border-radius: 100px; font-size: .72rem; font-weight: 600; background: var(--overlay); color: var(--overlay-txt); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }

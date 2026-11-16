@@ -62,7 +62,7 @@ export default function Experience() {
         }
         .xp-now::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
 
-        .xp-role { font-family: var(--font-syne), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); letter-spacing: -0.02em; margin: 0; }
+        .xp-role { font-family: var(--font-head), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); letter-spacing: -0.02em; margin: 0; }
         .xp-co { display: flex; align-items: center; gap: 8px; margin: .35rem 0 1.1rem; font-weight: 600; color: var(--accent-txt); font-size: .95rem; }
 
         .xp-pts { list-style: none; padding: 0; margin: 0 0 1.4rem; display: flex; flex-direction: column; gap: .55rem; }

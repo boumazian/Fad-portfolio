@@ -63,7 +63,7 @@ export default function FeaturedProject({
           width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
           background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); margin-top: .5rem;
         }
-        .fp-name { font-family: var(--font-syne), sans-serif; font-size: 1.6rem; font-size: min(2.2rem, 8.4cqi); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.1; overflow-wrap: break-word; }
+        .fp-name { font-family: var(--font-head), sans-serif; font-size: 1.6rem; font-size: min(2.2rem, 8.4cqi); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.1; overflow-wrap: break-word; }
         .fp-tagline { font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0; }
         .fp-role { font-size: .9rem; font-weight: 700; color: #fff; }
         .fp-role span { font-weight: 500; color: rgba(255,255,255,0.8); }

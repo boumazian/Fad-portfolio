@@ -48,7 +48,7 @@ export default function CardProject({ title, description, highlights = [], tags 
         }
 
         .cp-body { padding: 1.6rem 1.7rem 1.8rem; flex: 1; display: flex; flex-direction: column; gap: .85rem; }
-        .cp-title { font-family: var(--font-syne), sans-serif; font-size: 1.3rem; font-weight: 800; margin: 0; color: var(--txt); letter-spacing: -0.02em; }
+        .cp-title { font-family: var(--font-head), sans-serif; font-size: 1.3rem; font-weight: 800; margin: 0; color: var(--txt); letter-spacing: -0.02em; }
         .cp-desc { font-size: .92rem; color: var(--txt2); line-height: 1.6; margin: 0; }
 
         .cp-hl { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .45rem; }
