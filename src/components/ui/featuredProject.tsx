@@ -6,6 +6,7 @@ export interface FeaturedProjectProps {
   tagline: string;
   company?: string;
   role: string;
+  period?: string;       // e.g. "May 2025 – Mar 2026"
   problem: string;
   solution: string;
   features: string[];
@@ -23,7 +24,7 @@ export interface FeaturedProjectProps {
 }
 
 export default function FeaturedProject({
-  name, tagline, company, role, problem, solution, features, stack, contribution, badge, icon,
+  name, tagline, company, role, period, problem, solution, features, stack, contribution, badge, icon,
   github, privateLabel = "Private Repository", privateNote, link, linkLabel = "Visit live site",
   contactLabel = "Ask me about the architecture", reverse,
 }: FeaturedProjectProps) {
@@ -62,10 +63,11 @@ export default function FeaturedProject({
           width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
           background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); margin-top: .5rem;
         }
-        .fp-name { font-family: var(--font-syne), sans-serif; font-size: 1.6rem; font-size: min(2.2rem, 8.4cqi); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.1; overflow-wrap: break-word; }
+        .fp-name { font-family: var(--font-head), sans-serif; font-size: 1.6rem; font-size: min(2.2rem, 8.4cqi); font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1.1; overflow-wrap: break-word; }
         .fp-tagline { font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.88); margin: 0; }
         .fp-role { font-size: .9rem; font-weight: 700; color: #fff; }
         .fp-role span { font-weight: 500; color: rgba(255,255,255,0.8); }
+        .fp-role .fp-period { display: block; margin-top: 4px; font-size: .85rem; }
 
         .fp-foot { margin-top: auto; display: flex; flex-direction: column; gap: .8rem; position: relative; z-index: 1; }
         .fp-private {
@@ -125,7 +127,7 @@ export default function FeaturedProject({
           {icon && <div className="fp-icon" aria-hidden="true">{icon}</div>}
           <h3 id={id} className="fp-name">{name}</h3>
           <p className="fp-tagline">{tagline}</p>
-          <div className="fp-role">{role}{company && <span> · {company}</span>}</div>
+          <div className="fp-role">{role}{company && <span> · {company}</span>}{period && <span className="fp-period">{period}</span>}</div>
 
           <div className="fp-foot">
             {isPrivate && privateNote && (

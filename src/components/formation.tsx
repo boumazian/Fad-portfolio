@@ -85,8 +85,8 @@ export default function Formation() {
           font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;
         }
         .fm-title {
-          font-family: var(--font-syne), sans-serif; font-size: clamp(2.5rem, 7vw, 4rem); font-weight: 800;
-          letter-spacing: -0.05em; color: var(--txt); margin: 0 0 1rem;
+          font-family: var(--font-head), sans-serif; font-size: clamp(2.5rem, 7vw, 4rem); font-weight: 800;
+          letter-spacing: -0.03em; color: var(--txt); margin: 0 0 1rem;
         }
         .fm-sub { font-size: 1.1rem; color: var(--txt2); line-height: 1.7; max-width: 600px; margin: 0 auto; }
         .fm-grid { display: flex; flex-direction: column; list-style: none; padding: 0; margin: 0; }

@@ -6,7 +6,7 @@ export default function ContactLeft() {
     <>
       <style>{`
         .cl { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; background: var(--grad-deep); min-height: 400px; color: #fff; }
-        .cl-t { font-family: var(--font-syne), sans-serif; font-size: 1.65rem; font-weight: 800; margin: 0 0 .5rem; }
+        .cl-t { font-family: var(--font-head), sans-serif; font-size: 1.65rem; font-weight: 800; margin: 0 0 .5rem; }
         .cl-s { font-size: .92rem; color: rgba(255,255,255,.85); line-height: 1.7; margin: 0 0 2rem; }
         .cl-info { display: flex; flex-direction: column; gap: .6rem; list-style: none; padding: 0; margin: 0; }
         .cl-row { display: flex; align-items: center; gap: 12px; min-height: 44px; font-size: .92rem; color: #fff; text-decoration: none; overflow-wrap: anywhere; }

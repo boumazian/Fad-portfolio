@@ -1,6 +1,6 @@
 import CardProject, { type CardProps } from "@/components/ui/cardProject";
 import FeaturedProject, { type FeaturedProjectProps } from "@/components/ui/featuredProject";
-import { LayoutDashboard, MessageSquare, Globe, Cloud, ShoppingBag, Store } from "lucide-react";
+import { LayoutDashboard, Globe, ShoppingBag, Store, UtensilsCrossed, Gift, Heart } from "lucide-react";
 
 // Production case studies → featured full-width cards (alternating layout).
 // Only set `github` for PUBLIC repos; private ones get a lock badge instead of a 404 link.
@@ -54,11 +54,58 @@ const FEATURED: FeaturedProjectProps[] = [{
     { group: "Tooling", items: ["ESLint 9", "Git", "GitHub"] },
   ],
   contribution: "Solo full-stack developer: brand design, the responsive storefront, a normalized PostgreSQL database with RLS security policies, the Firebase-to-Supabase data migration and the 7-tab admin dashboard.",
+}, {
+  name: "Koul Ou Skout",
+  badge: "Featured · Serverless on AWS",
+  tagline: "A serverless restaurant marketplace where local restaurants can put their menus online and take orders within minutes.",
+  role: "Solo Full-Stack Developer",
+  period: "May 2025 – Mar 2026",
+  icon: <UtensilsCrossed size={30} />,
+  privateNote: "The code is private. Happy to walk through the AWS architecture and data model in an interview.",
+  problem: "Small restaurants rarely have their own online ordering and usually rely on costly third-party platforms.",
+  solution: "A two-sided marketplace where restaurant owners sign up, publish menus and manage incoming orders, while customers browse menus, fill a cart and check out.",
+  features: [
+    "Self-service restaurant onboarding with Firebase Auth and Amazon S3 logo uploads",
+    "Owner dashboard to accept or refuse orders, manage menus with paid add-ons and edit profile settings",
+    "Customer ordering flow: dynamic restaurant menu pages, search and category filters, a persistent cart and checkout",
+    "Location-aware landing page with an interactive Leaflet/OpenStreetMap delivery-zone finder",
+  ],
+  stack: [
+    { group: "Frontend", items: ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion"] },
+    { group: "Maps", items: ["Leaflet", "React-Leaflet", "OpenStreetMap Nominatim API"] },
+    { group: "Backend & Cloud", items: ["Next.js Route Handlers (REST API)", "AWS SDK v3", "Amazon DynamoDB", "Amazon S3", "AWS CloudFormation (IaC)"] },
+    { group: "Auth & Deploy", items: ["Firebase Authentication", "Netlify", "AWS Amplify"] },
+  ],
+  contribution: "Solo full-stack developer: designed the DynamoDB data model with secondary indexes, wrote the AWS CloudFormation templates, built the REST APIs and S3 image uploads, integrated Firebase Auth and developed the role-based storefront and dashboard.",
+}, {
+  name: "Gift a Smile",
+  badge: "Featured · Social Impact",
+  tagline: "A donation platform in Arabic, English and French that tracks, live, how many children a community Eid-clothing campaign has fully clothed.",
+  role: "Solo Full-Stack Developer",
+  period: "Feb – Mar 2026 · built in 2 weeks",
+  icon: <Gift size={30} />,
+  privateNote: "The code is private. Happy to walk through the Firestore logic and security rules in an interview.",
+  contactLabel: "Ask me for a demo",
+  problem: "Grassroots charity drives run on WhatsApp threads and spreadsheets, so donors can't see progress and organizers lose track of pledges.",
+  solution: "A public site where donors pledge in one tap, with a live progress bar toward the campaign goal and a secured admin dashboard to manage every pledge.",
+  features: [
+    "Live impact tracking from Firestore: children fully clothed, calculated from item and cash donations",
+    "Trilingual (Arabic, English, French) with full right-to-left layout switching for Arabic",
+    "Secured admin dashboard: Firebase Auth with an admin allowlist, pledge search and filters, stock adjustments",
+    "International giving guide for donors abroad (Taptap Send) and direct WhatsApp integration",
+  ],
+  stack: [
+    { group: "Framework & Styling", items: ["Next.js 16 (App Router)", "React 19", "TypeScript 5", "Tailwind CSS 4", "Lucide React"] },
+    { group: "Backend & Security", items: ["Firebase 12", "Cloud Firestore", "Firebase Auth", "Security Rules (admin allowlist)"] },
+    { group: "Hosting & Tooling", items: ["Netlify", "Firebase CLI", "ESLint 9"] },
+  ],
+  contribution: "Solo full-stack developer, built in 2 weeks: 13 modular React components, the Firestore counting logic, the auth-gated admin dashboard with its security rules, and the trilingual i18n/RTL setup.",
 }];
 
-// Public projects. Each card shows a "GitHub" button (github) and/or a
-// "Live Demo" button (link). Add a screenshot in /public/projects/ and set
-// imageUrl to replace the generated cover.
+// Smaller projects. Each card shows a "GitHub" button (github) and/or a
+// "Live Demo" button (link); private ones set `privateLabel` (lock badge +
+// contact CTA). Cards with none of these are hidden. Add a screenshot in
+// /public/projects/ and set imageUrl to replace the generated cover.
 const PROJECTS: CardProps[] = [
   {
     title: "Tandim — Life Dashboard",
@@ -73,17 +120,16 @@ const PROJECTS: CardProps[] = [
     icon: <LayoutDashboard size={34} />,
   },
   {
-    title: "Chatty Realtime",
-    description: "A full-stack chat app built around secure authentication. The auth layer is done; real-time messaging with Socket.io is next.",
+    title: "Birthday Love",
+    description: "Birthday texts and e-cards feel generic. This interactive love letter opens a CSS-drawn sealed envelope and types out a heartfelt message in real time, with music and confetti.",
     highlights: [
-      "JWT sessions in httpOnly, SameSite=strict cookies; passwords hashed with bcrypt",
-      "Login/register forms validated with React Hook Form + Zod, with protected routes",
-      "Express + MongoDB REST API; client state with Zustand and React Query",
+      "Two-stage experience: the envelope opens into a letter with a custom typewriter hook, canvas-confetti bursts and HTML5 Audio",
+      "Accessible by design: respects reduced motion, Esc to reseal, screen-reader labels",
+      "All copy and assets in a typed content.ts module, so it can be re-personalized in minutes",
     ],
-    tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "JWT"],
-    github: "https://github.com/boumazian/chatty-realtime",
-    status: "In progress",
-    icon: <MessageSquare size={34} />,
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "canvas-confetti"],
+    privateLabel: "Private",
+    icon: <Heart size={34} />,
   },
   {
     title: "Developer Portfolio",
@@ -98,15 +144,7 @@ const PROJECTS: CardProps[] = [
     link: "https://fad-bo.netlify.app/",
     icon: <Globe size={34} />,
   },
-  {
-    // Hidden until a public repo URL is added below (cards need a GitHub or Live Demo link).
-    title: "AWS Cloud Infrastructure",
-    description: "Cloud infrastructure setup and automation using Terraform/CloudFormation with architecture design.",
-    tags: ["AWS", "Terraform", "CloudFormation"],
-    github: "",
-    icon: <Cloud size={34} />,
-  },
-].filter(p => p.github || p.link);
+].filter(p => p.github || p.link || p.privateLabel);
 
 export default function Projects() {
   return (
@@ -118,7 +156,14 @@ export default function Projects() {
           background: radial-gradient(circle, var(--glow) 0%, transparent 70%); opacity: .5; pointer-events: none;
         }
         .p-container { max-width: 1240px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
-        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+        .p-more { display: flex; align-items: center; gap: 1rem; margin: 4rem 0 2rem; font-family: var(--font-head), sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--txt); }
+        .p-more::after { content: ""; flex: 1; height: 1px; background: var(--border-accent); }
+        /* auto-fit: any number of cards stretches to fill the row (no empty columns) */
+        .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+        /* 2-column range (tablet): a lone last card spans the row instead of leaving a gap */
+        @media (min-width: 769px) and (max-width: 1147px) {
+          .p-grid > article:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+        }
 
         @media (max-width: 768px) {
           .projects { padding: 90px 0; }
@@ -129,12 +174,13 @@ export default function Projects() {
 
       <div className="p-container">
         <h2 id="projects-title" className="sec-title">Featured <span className="grad">Projects</span></h2>
-        <p className="sec-sub">Production work and personal projects: open the code on GitHub or try the live demo.</p>
+        <p className="sec-sub">Production case studies first, then personal projects with their code on GitHub.</p>
 
         {FEATURED.map((f, i) => (
           <FeaturedProject key={f.name} {...f} reverse={i % 2 === 1} />
         ))}
 
+        <h3 className="p-more">More projects</h3>
         <div className="p-grid">
           {PROJECTS.map(p => (
             <CardProject key={p.title} {...p} />

@@ -28,7 +28,7 @@ export default function AboutMe() {
         }
         .b-card:hover { transform: translateY(-5px); border-color: var(--border-accent); box-shadow: var(--shadow); }
 
-        .b-title { font-family: var(--font-syne), sans-serif; font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; color: var(--txt); margin: 10px 0 0; }
+        .b-title { font-family: var(--font-head), sans-serif; font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; color: var(--txt); margin: 10px 0 0; }
         .b-subtitle { font-size: .75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-txt); font-weight: 700; display: flex; align-items: center; gap: 6px; margin: 0; }
         .b-text { font-size: .95rem; color: var(--txt2); line-height: 1.6; margin: 12px 0 0; }
 
@@ -40,7 +40,7 @@ export default function AboutMe() {
         .c-contact .b-title, .c-contact .b-subtitle { color: #fff; }
         .c-contact:hover { box-shadow: var(--shadow-accent); }
 
-        .stat-num { font-family: var(--font-syne), sans-serif; font-size: 3.5rem; font-weight: 900; margin: 10px 0; }
+        .stat-num { font-family: var(--font-head), sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; margin: 10px 0; }
 
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 0; padding: 0; list-style: none; }
         .tag { padding: 5px 12px; border-radius: 100px; background: var(--soft); color: var(--accent-txt); font-size: 12px; font-weight: 600; }

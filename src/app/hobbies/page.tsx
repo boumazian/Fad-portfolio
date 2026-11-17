@@ -72,8 +72,8 @@ export default function HobbiesForm() {
           font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;
         }
         .hb-title {
-          font-family: var(--font-syne), sans-serif; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800;
-          letter-spacing: -0.05em; color: var(--txt); margin: 0 0 1rem; line-height: 1;
+          font-family: var(--font-head), sans-serif; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800;
+          letter-spacing: -0.03em; color: var(--txt); margin: 0 0 1rem; line-height: 1;
         }
         .hb-sub { font-size: 1.1rem; color: var(--txt2); line-height: 1.7; max-width: 600px; margin: 0 auto; }
         .hb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }

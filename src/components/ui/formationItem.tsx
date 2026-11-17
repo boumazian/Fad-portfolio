@@ -41,7 +41,7 @@ export default function FormationItem({
         .fi-card:hover { transform: translateX(4px); box-shadow: var(--shadow); border-color: var(--accent); }
 
         .fi-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; flex-wrap: wrap; margin-bottom: .45rem; }
-        .fi-title { font-family: var(--font-syne), sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--txt); line-height: 1.4; margin: 0; }
+        .fi-title { font-family: var(--font-head), sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--txt); line-height: 1.4; margin: 0; }
         .fi-tag {
           padding: 3px 11px; border-radius: 100px; font-size: .72rem; font-weight: 700; white-space: nowrap; flex-shrink: 0;
           background: var(--soft); color: var(--accent-txt); border: 1px solid var(--border-accent);

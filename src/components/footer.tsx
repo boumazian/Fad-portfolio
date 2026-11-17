@@ -24,7 +24,7 @@ export default function Footer() {
         .ft-in { max-width: 1100px; margin: 0 auto; }
         .ft-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 
-        .ft-name { font-family: var(--font-syne), sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+        .ft-name { font-family: var(--font-head), sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--txt); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
         .ft-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
         .ft-desc { font-size: .92rem; color: var(--txt2); line-height: 1.8; max-width: 300px; margin: 0; }
         .ft-ch { font-size: .78rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 800; color: var(--txt3); margin: 0 0 1rem; }

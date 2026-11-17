@@ -103,9 +103,9 @@ export default function Navbar() {
         .nb-box {
           width: 40px; height: 40px; background: var(--grad);
           border-radius: 12px; display: flex; align-items: center; justify-content: center;
-          font-family: var(--font-syne), sans-serif; font-weight: 800; color: #fff; font-size: .95rem;
+          font-family: var(--font-head), sans-serif; font-weight: 800; color: #fff; font-size: .95rem;
         }
-        .nb-brand { font-family: var(--font-syne), sans-serif; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+        .nb-brand { font-family: var(--font-head), sans-serif; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
 
         /* Navigation links */
         .nb-ul { list-style:none; display:flex; gap: .25rem; margin: 0; padding: 0; }

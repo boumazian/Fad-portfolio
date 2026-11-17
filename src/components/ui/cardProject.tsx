@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Github, ExternalLink, FolderGit2 } from "lucide-react";
+import { Github, ExternalLink, FolderGit2, Lock, ArrowRight } from "lucide-react";
 
 export interface CardProps {
   title: string;
@@ -11,9 +11,12 @@ export interface CardProps {
   imageUrl?: string; // screenshot in /public (falls back to a branded cover)
   icon?: ReactNode;
   status?: string;   // e.g. "In progress"
+  privateLabel?: string;  // no public repo → lock badge + contact CTA instead of a 404 link
+  contactLabel?: string;
 }
 
-export default function CardProject({ title, description, highlights = [], tags = [], github, link, imageUrl, icon, status }: CardProps) {
+export default function CardProject({ title, description, highlights = [], tags = [], github, link, imageUrl, icon, status, privateLabel, contactLabel = "Ask for a demo" }: CardProps) {
+  const isPrivate = !github && !!privateLabel;
   return (
     <>
       <style>{`
@@ -47,8 +50,14 @@ export default function CardProject({ title, description, highlights = [], tags 
           border: 1px solid color-mix(in srgb, var(--warn-txt) 40%, transparent);
         }
 
+        .cp-private {
+          position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; gap: 6px;
+          padding: 5px 12px; border-radius: 100px; font-size: .72rem; font-weight: 700;
+          color: var(--txt); background: var(--overlay); border: 1px solid var(--border-accent);
+          backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        }
         .cp-body { padding: 1.6rem 1.7rem 1.8rem; flex: 1; display: flex; flex-direction: column; gap: .85rem; }
-        .cp-title { font-family: var(--font-syne), sans-serif; font-size: 1.3rem; font-weight: 800; margin: 0; color: var(--txt); letter-spacing: -0.02em; }
+        .cp-title { font-family: var(--font-head), sans-serif; font-size: 1.3rem; font-weight: 800; margin: 0; color: var(--txt); letter-spacing: -0.02em; }
         .cp-desc { font-size: .92rem; color: var(--txt2); line-height: 1.6; margin: 0; }
 
         .cp-hl { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .45rem; }
@@ -76,6 +85,7 @@ export default function CardProject({ title, description, highlights = [], tags 
             ? <img src={imageUrl} alt={`${title} screenshot`} className="cp-img" loading="lazy" />
             : <div className="cp-art" aria-hidden="true"><div className="cp-art-icon">{icon ?? <FolderGit2 size={34} />}</div></div>}
           {status && <span className="cp-status">{status}</span>}
+          {isPrivate && <span className="cp-private"><Lock size={12} aria-hidden="true" /> {privateLabel}</span>}
         </div>
 
         <div className="cp-body">
@@ -92,6 +102,12 @@ export default function CardProject({ title, description, highlights = [], tags 
             <ul className="cp-tags" aria-label="Technologies">
               {tags.map(tg => <li className="cp-tag" key={tg}>{tg}</li>)}
             </ul>
+          )}
+
+          {isPrivate && !link && (
+            <div className="cp-actions">
+              <a href="/#contact" className="cp-btn cp-gh">{contactLabel} <ArrowRight size={16} aria-hidden="true" /></a>
+            </div>
           )}
 
           {(github || link) && (
